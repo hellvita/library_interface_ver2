@@ -54,6 +54,7 @@ namespace library_interface_ver2
             this.button2.TabIndex = 1;
             this.button2.Text = "Інтерфейс працівника";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 

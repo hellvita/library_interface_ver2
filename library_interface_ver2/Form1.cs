@@ -14,6 +14,7 @@ namespace library_interface_ver2
     public partial class Form1 : Form
     {
         private EmploeeAuthForm form2;
+        private UserLogSinginForm form3;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,18 @@ namespace library_interface_ver2
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            if (form3 == null || form3.IsDisposed)
+            {
+                form3 = new UserLogSinginForm();
+                form3.Show();
+            }
+            else
+            {
+                form3.Focus();
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
         {
             if (form2 == null || form2.IsDisposed)
             {
