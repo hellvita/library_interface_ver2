@@ -45,7 +45,7 @@ namespace library_interface_ver2
         private void button1_Click(object sender, EventArgs e)
         {
             var userLogin = textBox_user_login.Text;
-            var userPwd = textBox_user_pwd.Text;
+            var userPwd = md5.hashPwd(textBox_user_pwd.Text);
 
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             DataTable table = new DataTable();
