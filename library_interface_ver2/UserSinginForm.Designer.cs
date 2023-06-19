@@ -78,10 +78,10 @@ namespace library_interface_ver2
             this.label_pwd_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label_pwd_tip.Location = new System.Drawing.Point(535, 478);
             this.label_pwd_tip.Name = "label_pwd_tip";
-            this.label_pwd_tip.Size = new System.Drawing.Size(708, 62);
+            this.label_pwd_tip.Size = new System.Drawing.Size(741, 62);
             this.label_pwd_tip.TabIndex = 10;
             this.label_pwd_tip.Text = "Пароль має містити принаймні 5 символів (максимум 20). \r\nДопускається лише викори" +
-    "стання літер та цифр";
+    "стання цифр та латинських літер";
             this.label_pwd_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_email_tip

@@ -44,21 +44,32 @@ namespace library_interface_ver2
             var userPwd = md5.hashPwd(textBox_user_pwd.Text);
 
             if (DataIsOK(userFullName, userPhone, userEmail, textBox_user_pwd.Text)) {
+                
 
-                CloseThisForm();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                DataTable table = new DataTable();
+
+                string query_str = $"INSERT INTO users (USER_ID, USER_PASSWORD, FULL_NAME, PHONE, EMAIL) VALUES ('{generateUserID()}', '{userPwd}', '{userFullName}', '{userPhone}', '{userEmail}')";
+                MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+                database.openConenection();
+
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    CloseThisForm();
+                    database.closeConenection();
+                }
+                else { MessageBox.Show("failed"); }
+                                
+
             }
+
         }
 
         private bool DataIsOK(string name, string phone, string email, string pwd) {
-            bool nameOK = false;
-            bool phoneOK = false;
-            bool emailOK = false;
-            bool passwordOK = false;
-
-            nameOK = nameIsOK(name);
-            phoneOK = phoneIsOK(phone);
-            emailOK = emailIsOK(email);
-            passwordOK = pwdIsOK(pwd);
+            bool nameOK = nameIsOK(name);
+            bool phoneOK = phoneIsOK(phone);
+            bool emailOK = emailIsOK(email);
+            bool passwordOK = pwdIsOK(pwd);
 
             if (nameOK && phoneOK && emailOK && passwordOK) return true;
             return false;
@@ -121,10 +132,28 @@ namespace library_interface_ver2
         private bool pwdIsOK(string pwd) {
             int count = 0;
             if (pwd != "") {
-                foreach (var c in pwd) { count++; }
-                if (count >= 5) { return true; }
+                Regex r = new Regex("^[a-zA-Z0-9']+$");
+                Match match = r.Match(pwd);
+
+                if (match.Success)
+                {
+                    foreach (var c in pwd) { count++; }
+                    if (count >= 5) { return true; }
+                }                
             }
             return false;
+        }
+
+        private int generateUserID() {
+            database.openConenection();
+
+            string query_str = "SELECT MAX(USER_ID) FROM users";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var generatedID = (int)command.ExecuteScalar() + 1;
+
+            database.closeConenection();
+            return generatedID;
         }
 
         private void CloseThisForm() {
