@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
+    // authorisation form
     public partial class Form1 : Form
     {
         DataBase database = new DataBase();
