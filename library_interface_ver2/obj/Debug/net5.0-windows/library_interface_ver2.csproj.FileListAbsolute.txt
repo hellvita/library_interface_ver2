@@ -33,3 +33,4 @@ E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\bin
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\bin\Debug\net5.0-windows\runtimes\win-x64\native\krb5_64.dll
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\bin\Debug\net5.0-windows\runtimes\win-x64\native\krbcc64.dll
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.csproj.CopyComplete
+E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.EmploeeAuthForm.resources

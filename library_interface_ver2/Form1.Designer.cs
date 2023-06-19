@@ -30,8 +30,8 @@ namespace library_interface_ver2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,16 +45,6 @@ namespace library_interface_ver2
             this.panel1.Size = new System.Drawing.Size(776, 426);
             this.panel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(115, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(556, 116);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Інтерфейс користувача";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -64,6 +54,17 @@ namespace library_interface_ver2
             this.button2.TabIndex = 1;
             this.button2.Text = "Інтерфейс працівника";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(115, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(556, 116);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Інтерфейс користувача";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 

@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
-    // authorisation form
+    // choosing interface form
     public partial class Form1 : Form
     {
-        DataBase database = new DataBase();
+        private EmploeeAuthForm form2;
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +22,19 @@ namespace library_interface_ver2
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (form2 == null || form2.IsDisposed)
+            {
+                form2 = new EmploeeAuthForm();
+                form2.Show();
+            }
+            else
+            {
+                form2.Focus();
+            }
         }
     }
 }
