@@ -12,6 +12,8 @@ namespace library_interface_ver2
 {
     public partial class UserLogSinginForm : Form
     {
+        private UserLoginForm form1;
+        private UserSinginForm form2;
         public UserLogSinginForm()
         {
             InitializeComponent();
@@ -25,13 +27,31 @@ namespace library_interface_ver2
         // login button
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (form1 == null || form1.IsDisposed)
+            {
+                form1 = new UserLoginForm();
+                form1.Show();
+            }
+            else
+            {
+                form1.Focus();
+            }
+            Close();
         }
 
         // singin button
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (form2 == null || form2.IsDisposed)
+            {
+                form2 = new UserSinginForm();
+                form2.Show();
+            }
+            else
+            {
+                form2.Focus();
+            }
+            Close();
         }
     }
 }

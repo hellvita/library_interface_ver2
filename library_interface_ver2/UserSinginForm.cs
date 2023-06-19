@@ -7,22 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
-    public partial class UserLoginForm : Form
+    public partial class UserSinginForm : Form
     {
-        DataBase database = new DataBase();
         private UserLogSinginForm home_form;
-        public UserLoginForm()
+        public UserSinginForm()
         {
             InitializeComponent();
-        }
-
-        private void UserLoginForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button_back_Click(object sender, EventArgs e)
@@ -37,6 +30,11 @@ namespace library_interface_ver2
                 home_form.Focus();
             }
             Close();
+        }
+
+        private void UserSinginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

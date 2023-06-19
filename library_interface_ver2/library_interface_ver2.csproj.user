@@ -13,5 +13,8 @@
     <Compile Update="UserLogSinginForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserSinginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -35,3 +35,5 @@ E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\bin
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.csproj.CopyComplete
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.EmploeeAuthForm.resources
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.UserLogSinginForm.resources
+E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.UserLoginForm.resources
+E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.UserSinginForm.resources
