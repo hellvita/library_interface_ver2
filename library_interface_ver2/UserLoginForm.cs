@@ -22,7 +22,9 @@ namespace library_interface_ver2
 
         private void UserLoginForm_Load(object sender, EventArgs e)
         {
-
+            textBox_user_pwd.PasswordChar = '☺';
+            textBox_user_pwd.MaxLength = 20;
+            textBox_user_login.MaxLength = 5;
         }
 
         private void button_back_Click(object sender, EventArgs e)
@@ -37,6 +39,38 @@ namespace library_interface_ver2
                 home_form.Focus();
             }
             Close();
+        }
+
+        // login button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var userLogin = textBox_user_login.Text;
+            var userPwd = textBox_user_pwd.Text;
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            DataTable table = new DataTable();
+
+            if (userLogin != "" && userPwd != "") {
+
+                string query_str = $"SELECT * FROM users WHERE USER_ID = '{userLogin}' AND USER_PASSWORD = '{userPwd}'";
+
+                MySqlCommand SelectAll = new MySqlCommand(query_str, database.GetConnection());
+
+                adapter.SelectCommand = SelectAll;
+                adapter.Fill(table);
+            }
+
+
+
+            if (table.Rows.Count == 1) {
+                // login success
+                Close();
+            }
+            else {
+                // login fail
+                label_error_msg.Visible = Visible;
+            }
+
         }
     }
 }

@@ -30,13 +30,14 @@ namespace library_interface_ver2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_error_msg = new System.Windows.Forms.Label();
+            this.button_back = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_user_pwd = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_user_login = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button_back = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -45,6 +46,7 @@ namespace library_interface_ver2
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(116)))), ((int)(((byte)(106)))));
+            this.panel1.Controls.Add(this.label_error_msg);
             this.panel1.Controls.Add(this.button_back);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.groupBox2);
@@ -52,8 +54,31 @@ namespace library_interface_ver2
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(726, 319);
+            this.panel1.Size = new System.Drawing.Size(726, 356);
             this.panel1.TabIndex = 1;
+            // 
+            // label_error_msg
+            // 
+            this.label_error_msg.AutoSize = true;
+            this.label_error_msg.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_error_msg.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label_error_msg.Location = new System.Drawing.Point(210, 232);
+            this.label_error_msg.Name = "label_error_msg";
+            this.label_error_msg.Size = new System.Drawing.Size(320, 27);
+            this.label_error_msg.TabIndex = 8;
+            this.label_error_msg.Text = "Ой, невірний логін або пароль!";
+            this.label_error_msg.Visible = false;
+            // 
+            // button_back
+            // 
+            this.button_back.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_back.Location = new System.Drawing.Point(12, 14);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(57, 47);
+            this.button_back.TabIndex = 7;
+            this.button_back.Text = "←";
+            this.button_back.UseVisualStyleBackColor = true;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
             // label1
             // 
@@ -108,23 +133,13 @@ namespace library_interface_ver2
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(294, 246);
+            this.button1.Location = new System.Drawing.Point(293, 286);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 58);
             this.button1.TabIndex = 1;
             this.button1.Text = "ВХІД";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button_back
-            // 
-            this.button_back.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_back.Location = new System.Drawing.Point(12, 14);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(57, 47);
-            this.button_back.TabIndex = 7;
-            this.button_back.Text = "←";
-            this.button_back.UseVisualStyleBackColor = true;
-            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // UserLoginForm
             // 
@@ -132,7 +147,7 @@ namespace library_interface_ver2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(749, 347);
+            this.ClientSize = new System.Drawing.Size(749, 380);
             this.Controls.Add(this.panel1);
             this.Name = "UserLoginForm";
             this.Text = "UserLoginForm";
@@ -157,5 +172,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_back;
+        private System.Windows.Forms.Label label_error_msg;
     }
 }
