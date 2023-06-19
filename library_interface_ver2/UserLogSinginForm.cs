@@ -21,5 +21,17 @@ namespace library_interface_ver2
         {
 
         }
+
+        // login button
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // singin button
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

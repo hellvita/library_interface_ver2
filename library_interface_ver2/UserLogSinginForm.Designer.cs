@@ -30,9 +30,9 @@ namespace library_interface_ver2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,28 @@ namespace library_interface_ver2
             this.panel1.Size = new System.Drawing.Size(776, 335);
             this.panel1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(244, 221);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(284, 72);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Зареєструватись";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(244, 123);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(284, 72);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Увійти";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -58,26 +80,6 @@ namespace library_interface_ver2
             this.label1.Size = new System.Drawing.Size(739, 49);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ласкаво просимо до бібліотеки Hisentia!~";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(244, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(284, 72);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Увійти";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(244, 221);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(284, 72);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Зареєструватись";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // UserLogSinginForm
             // 
