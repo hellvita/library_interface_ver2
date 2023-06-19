@@ -30,6 +30,10 @@ namespace library_interface_ver2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_pwd_tip = new System.Windows.Forms.Label();
+            this.label_email_tip = new System.Windows.Forms.Label();
+            this.label_phone_tip = new System.Windows.Forms.Label();
+            this.label_fname_tip = new System.Windows.Forms.Label();
             this.button_back = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox_user_email = new System.Windows.Forms.TextBox();
@@ -41,10 +45,6 @@ namespace library_interface_ver2
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_user_fname = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label_fname_tip = new System.Windows.Forms.Label();
-            this.label_phone_tip = new System.Windows.Forms.Label();
-            this.label_email_tip = new System.Windows.Forms.Label();
-            this.label_pwd_tip = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -70,6 +70,56 @@ namespace library_interface_ver2
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1378, 653);
             this.panel1.TabIndex = 2;
+            // 
+            // label_pwd_tip
+            // 
+            this.label_pwd_tip.AutoSize = true;
+            this.label_pwd_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_pwd_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label_pwd_tip.Location = new System.Drawing.Point(535, 478);
+            this.label_pwd_tip.Name = "label_pwd_tip";
+            this.label_pwd_tip.Size = new System.Drawing.Size(708, 62);
+            this.label_pwd_tip.TabIndex = 10;
+            this.label_pwd_tip.Text = "Пароль має містити принаймні 5 символів (максимум 20). \r\nДопускається лише викори" +
+    "стання літер та цифр";
+            this.label_pwd_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_email_tip
+            // 
+            this.label_email_tip.AutoSize = true;
+            this.label_email_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_email_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label_email_tip.Location = new System.Drawing.Point(535, 382);
+            this.label_email_tip.Name = "label_email_tip";
+            this.label_email_tip.Size = new System.Drawing.Size(661, 31);
+            this.label_email_tip.TabIndex = 9;
+            this.label_email_tip.Text = "Введіть адресу Вашої електронної поштової скриньки";
+            this.label_email_tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_phone_tip
+            // 
+            this.label_phone_tip.AutoSize = true;
+            this.label_phone_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_phone_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label_phone_tip.Location = new System.Drawing.Point(535, 260);
+            this.label_phone_tip.Name = "label_phone_tip";
+            this.label_phone_tip.Size = new System.Drawing.Size(512, 62);
+            this.label_phone_tip.TabIndex = 8;
+            this.label_phone_tip.Text = "Введіть Ваш актуальний номер телефону.\r\n(Наприклад: +380 000 000 00 00)";
+            this.label_phone_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_fname_tip
+            // 
+            this.label_fname_tip.AutoSize = true;
+            this.label_fname_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_fname_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label_fname_tip.Location = new System.Drawing.Point(535, 142);
+            this.label_fname_tip.Name = "label_fname_tip";
+            this.label_fname_tip.Size = new System.Drawing.Size(775, 62);
+            this.label_fname_tip.TabIndex = 7;
+            this.label_fname_tip.Text = "Введіть повністю своє ПІБ. Ці дані повинні бути достовірними\r\n(як у Вашому паспор" +
+    "ті)";
+            this.label_fname_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button_back
             // 
@@ -179,56 +229,7 @@ namespace library_interface_ver2
             this.button1.TabIndex = 1;
             this.button1.Text = "ЗАРЕЄСТРУВАТИСЬ";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label_fname_tip
-            // 
-            this.label_fname_tip.AutoSize = true;
-            this.label_fname_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label_fname_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label_fname_tip.Location = new System.Drawing.Point(535, 142);
-            this.label_fname_tip.Name = "label_fname_tip";
-            this.label_fname_tip.Size = new System.Drawing.Size(775, 62);
-            this.label_fname_tip.TabIndex = 7;
-            this.label_fname_tip.Text = "Введіть повністю своє ПІБ. Ці дані повинні бути достовірними\r\n(як у Вашому паспор" +
-    "ті)";
-            this.label_fname_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label_phone_tip
-            // 
-            this.label_phone_tip.AutoSize = true;
-            this.label_phone_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label_phone_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label_phone_tip.Location = new System.Drawing.Point(535, 273);
-            this.label_phone_tip.Name = "label_phone_tip";
-            this.label_phone_tip.Size = new System.Drawing.Size(507, 31);
-            this.label_phone_tip.TabIndex = 8;
-            this.label_phone_tip.Text = "Введіть Ваш актуальний номер телефону";
-            this.label_phone_tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_email_tip
-            // 
-            this.label_email_tip.AutoSize = true;
-            this.label_email_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label_email_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label_email_tip.Location = new System.Drawing.Point(535, 382);
-            this.label_email_tip.Name = "label_email_tip";
-            this.label_email_tip.Size = new System.Drawing.Size(661, 31);
-            this.label_email_tip.TabIndex = 9;
-            this.label_email_tip.Text = "Введіть адресу Вашої електронної поштової скриньки";
-            this.label_email_tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_pwd_tip
-            // 
-            this.label_pwd_tip.AutoSize = true;
-            this.label_pwd_tip.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label_pwd_tip.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label_pwd_tip.Location = new System.Drawing.Point(535, 491);
-            this.label_pwd_tip.Name = "label_pwd_tip";
-            this.label_pwd_tip.Size = new System.Drawing.Size(763, 62);
-            this.label_pwd_tip.TabIndex = 10;
-            this.label_pwd_tip.Text = "Пароль має містити принаймні 5 символів. Допускається лише\r\nвикористання літер та" +
-    " цифр";
-            this.label_pwd_tip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // UserSinginForm
             // 

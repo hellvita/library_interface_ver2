@@ -9,10 +9,10 @@ namespace library_interface_ver2
 {
     class md5
     {
-        public static string hashPwd(string password) {
+        public static string hashPwd(string word) {
             MD5 md5 = MD5.Create();
 
-            byte[] b = Encoding.ASCII.GetBytes(password);
+            byte[] b = Encoding.ASCII.GetBytes(word);
             byte[] hash = md5.ComputeHash(b);
 
             StringBuilder sb = new StringBuilder();

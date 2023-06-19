@@ -54,9 +54,9 @@ namespace library_interface_ver2
 
                 string query_str = $"SELECT * FROM users WHERE USER_ID = '{userLogin}' AND USER_PASSWORD = '{userPwd}'";
 
-                MySqlCommand SelectAll = new MySqlCommand(query_str, database.GetConnection());
+                MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
 
-                adapter.SelectCommand = SelectAll;
+                adapter.SelectCommand = command;
                 adapter.Fill(table);
             }
 
