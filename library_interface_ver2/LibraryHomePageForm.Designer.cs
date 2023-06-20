@@ -56,6 +56,7 @@ namespace library_interface_ver2
             this.button_pageBack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel_bookSearch = new System.Windows.Forms.Panel();
+            this.button_home = new System.Windows.Forms.Button();
             this.label_searcingTips = new System.Windows.Forms.Label();
             this.comboBox_language = new System.Windows.Forms.ComboBox();
             this.comboBox_disciplines = new System.Windows.Forms.ComboBox();
@@ -66,13 +67,14 @@ namespace library_interface_ver2
             this.button_search = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.panel_title = new System.Windows.Forms.Panel();
+            this.button_exit = new System.Windows.Forms.Button();
             this.button_userAcc = new System.Windows.Forms.Button();
             this.label_userID = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button_home = new System.Windows.Forms.Button();
-            this.button_exit = new System.Windows.Forms.Button();
+            this.panel_noresults = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel_mainbcg.SuspendLayout();
             this.panel_mainBooksOverview.SuspendLayout();
             this.panel_shortBookDescr3.SuspendLayout();
@@ -85,6 +87,7 @@ namespace library_interface_ver2
             this.panel_bookSearch.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_noresults.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_mainbcg
@@ -102,6 +105,7 @@ namespace library_interface_ver2
             // 
             this.panel_mainBooksOverview.AutoScroll = true;
             this.panel_mainBooksOverview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(172)))));
+            this.panel_mainBooksOverview.Controls.Add(this.panel_noresults);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr3);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr2);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr1);
@@ -372,6 +376,17 @@ namespace library_interface_ver2
             this.panel_bookSearch.Size = new System.Drawing.Size(1721, 146);
             this.panel_bookSearch.TabIndex = 1;
             // 
+            // button_home
+            // 
+            this.button_home.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_home.Location = new System.Drawing.Point(1634, 17);
+            this.button_home.Name = "button_home";
+            this.button_home.Size = new System.Drawing.Size(65, 53);
+            this.button_home.TabIndex = 9;
+            this.button_home.Text = "🏠";
+            this.button_home.UseVisualStyleBackColor = true;
+            this.button_home.Click += new System.EventHandler(this.button_home_Click);
+            // 
             // label_searcingTips
             // 
             this.label_searcingTips.AutoSize = true;
@@ -467,6 +482,17 @@ namespace library_interface_ver2
             this.panel_title.Size = new System.Drawing.Size(1721, 125);
             this.panel_title.TabIndex = 0;
             // 
+            // button_exit
+            // 
+            this.button_exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_exit.Location = new System.Drawing.Point(428, 60);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(63, 48);
+            this.button_exit.TabIndex = 5;
+            this.button_exit.Text = "🚪";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
+            // 
             // button_userAcc
             // 
             this.button_userAcc.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -518,27 +544,23 @@ namespace library_interface_ver2
             this.label1.TabIndex = 0;
             this.label1.Text = "Hisentia";
             // 
-            // button_home
+            // panel_noresults
             // 
-            this.button_home.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_home.Location = new System.Drawing.Point(1634, 17);
-            this.button_home.Name = "button_home";
-            this.button_home.Size = new System.Drawing.Size(65, 53);
-            this.button_home.TabIndex = 9;
-            this.button_home.Text = "🏠";
-            this.button_home.UseVisualStyleBackColor = true;
-            this.button_home.Click += new System.EventHandler(this.button_home_Click);
+            this.panel_noresults.Controls.Add(this.label4);
+            this.panel_noresults.Location = new System.Drawing.Point(0, -1);
+            this.panel_noresults.Name = "panel_noresults";
+            this.panel_noresults.Size = new System.Drawing.Size(1721, 614);
+            this.panel_noresults.TabIndex = 6;
             // 
-            // button_exit
+            // label4
             // 
-            this.button_exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_exit.Location = new System.Drawing.Point(428, 60);
-            this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(63, 48);
-            this.button_exit.TabIndex = 5;
-            this.button_exit.Text = "🚪";
-            this.button_exit.UseVisualStyleBackColor = true;
-            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(108, 236);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1271, 46);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "На жаль, немає результатів, що відповідають заданим критеріям пошуку ;(";
             // 
             // LibraryHomePageForm
             // 
@@ -569,6 +591,8 @@ namespace library_interface_ver2
             this.panel_title.ResumeLayout(false);
             this.panel_title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel_noresults.ResumeLayout(false);
+            this.panel_noresults.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -618,5 +642,7 @@ namespace library_interface_ver2
         private System.Windows.Forms.PictureBox pictureBox_bookCover2;
         private System.Windows.Forms.Button button_home;
         private System.Windows.Forms.Button button_exit;
+        private System.Windows.Forms.Panel panel_noresults;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -15,6 +15,7 @@ namespace library_interface_ver2
     {
         DataBase database = new DataBase();
         private UserLoginForm login_form;
+        private BookFullDescriptionForm description_form;
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -24,6 +25,8 @@ namespace library_interface_ver2
 
         private void LibraryHomePageForm_Load(object sender, EventArgs e)
         {
+            panel_mainBooksOverview.Visible = true;
+            panel_noresults.Visible = false;
             label_userID.Text = "Користувач №" + UserLoginForm.ulog;
             comboBox_pages.SelectedIndex = 0;
             FillBookTypesList();
@@ -348,22 +351,35 @@ namespace library_interface_ver2
 
         private void button_home_Click(object sender, EventArgs e)
         {
-
+            panel_mainBooksOverview.Visible = true;
+            panel_noresults.Visible = false;
         }
 
         private void linkLabel_bookName1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            openFullDescription();
         }
 
         private void linkLabel_bookName2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            openFullDescription();
         }
 
         private void linkLabel_bookName3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            openFullDescription();
+        }
 
+        private void openFullDescription() {
+            if (description_form == null || description_form.IsDisposed)
+            {
+                description_form = new BookFullDescriptionForm();
+                description_form.Show();
+            }
+            else
+            {
+                description_form.Focus();
+            }
         }
 
         private void button_exit_Click(object sender, EventArgs e)
