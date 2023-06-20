@@ -27,6 +27,7 @@ namespace library_interface_ver2
             label_userID.Text = "Користувач №" + UserLoginForm.ulog;
             FillBookTypesList();
             FillGenreTypeList();
+            FillSubjectAreaTypeList();
         }
 
         private void FillBookTypesList() {
@@ -69,6 +70,30 @@ namespace library_interface_ver2
             }
 
             comboBox_bookGenres.SelectedIndex = 0;
+
+            database.closeConenection();
+        }
+
+        private void FillSubjectAreaTypeList()
+        {
+            database.openConenection();
+
+            string query_str = "SELECT COUNT(*) FROM subject_areas";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var rowsAmount = (long)command.ExecuteScalar();
+
+
+            for (int i = 1; i < rowsAmount + 1; i++)
+            {
+                string subquery_str = $"SELECT SUB_AREA FROM subject_areas WHERE SUB_AREA_ID = '{i}'";
+                MySqlCommand subcommand = new MySqlCommand(subquery_str, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string text = obj.ToString();
+                comboBox_subject_areas.Items.Add(text);
+            }
+
+            comboBox_subject_areas.SelectedIndex = 0;
 
             database.closeConenection();
         }
