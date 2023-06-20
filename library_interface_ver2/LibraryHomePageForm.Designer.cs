@@ -40,6 +40,10 @@ namespace library_interface_ver2
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.button_search = new System.Windows.Forms.Button();
             this.comboBox_bookTypes = new System.Windows.Forms.ComboBox();
+            this.comboBox_bookGenres = new System.Windows.Forms.ComboBox();
+            this.comboBox_subject_areas = new System.Windows.Forms.ComboBox();
+            this.comboBox_books_subjects = new System.Windows.Forms.ComboBox();
+            this.comboBox_disciplines = new System.Windows.Forms.ComboBox();
             this.panel_mainbcg.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -121,6 +125,10 @@ namespace library_interface_ver2
             // 
             // panel_bookSearch
             // 
+            this.panel_bookSearch.Controls.Add(this.comboBox_disciplines);
+            this.panel_bookSearch.Controls.Add(this.comboBox_books_subjects);
+            this.panel_bookSearch.Controls.Add(this.comboBox_subject_areas);
+            this.panel_bookSearch.Controls.Add(this.comboBox_bookGenres);
             this.panel_bookSearch.Controls.Add(this.comboBox_bookTypes);
             this.panel_bookSearch.Controls.Add(this.button_search);
             this.panel_bookSearch.Controls.Add(this.textBox_search);
@@ -156,6 +164,42 @@ namespace library_interface_ver2
             this.comboBox_bookTypes.Size = new System.Drawing.Size(397, 39);
             this.comboBox_bookTypes.TabIndex = 2;
             // 
+            // comboBox_bookGenres
+            // 
+            this.comboBox_bookGenres.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_bookGenres.FormattingEnabled = true;
+            this.comboBox_bookGenres.Location = new System.Drawing.Point(497, 85);
+            this.comboBox_bookGenres.Name = "comboBox_bookGenres";
+            this.comboBox_bookGenres.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_bookGenres.TabIndex = 3;
+            // 
+            // comboBox_subject_areas
+            // 
+            this.comboBox_subject_areas.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_subject_areas.FormattingEnabled = true;
+            this.comboBox_subject_areas.Location = new System.Drawing.Point(497, 85);
+            this.comboBox_subject_areas.Name = "comboBox_subject_areas";
+            this.comboBox_subject_areas.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_subject_areas.TabIndex = 4;
+            // 
+            // comboBox_books_subjects
+            // 
+            this.comboBox_books_subjects.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_books_subjects.FormattingEnabled = true;
+            this.comboBox_books_subjects.Location = new System.Drawing.Point(497, 85);
+            this.comboBox_books_subjects.Name = "comboBox_books_subjects";
+            this.comboBox_books_subjects.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_books_subjects.TabIndex = 5;
+            // 
+            // comboBox_disciplines
+            // 
+            this.comboBox_disciplines.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_disciplines.FormattingEnabled = true;
+            this.comboBox_disciplines.Location = new System.Drawing.Point(497, 85);
+            this.comboBox_disciplines.Name = "comboBox_disciplines";
+            this.comboBox_disciplines.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_disciplines.TabIndex = 6;
+            // 
             // LibraryHomePageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -190,5 +234,9 @@ namespace library_interface_ver2
         private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.ComboBox comboBox_bookTypes;
+        private System.Windows.Forms.ComboBox comboBox_bookGenres;
+        private System.Windows.Forms.ComboBox comboBox_subject_areas;
+        private System.Windows.Forms.ComboBox comboBox_books_subjects;
+        private System.Windows.Forms.ComboBox comboBox_disciplines;
     }
 }
