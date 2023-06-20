@@ -159,6 +159,7 @@ namespace library_interface_ver2
             this.Controls.Add(this.panel1);
             this.Name = "BookFullDescriptionForm";
             this.Text = "BookFullDescriptionForm";
+            this.Load += new System.EventHandler(this.BookFullDescriptionForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bookCover)).EndInit();
