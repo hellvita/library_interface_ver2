@@ -13,6 +13,7 @@ namespace library_interface_ver2
     public partial class UserAccountForm : Form
     {
         private LibraryHomePageForm homepage_form;
+        private AccDeleteConfirmForm accDelete_form;
         public UserAccountForm()
         {
             InitializeComponent();
@@ -33,6 +34,50 @@ namespace library_interface_ver2
             else
             {
                 homepage_form.Focus();
+            }
+            Close();
+        }
+
+        private void button_editFname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_editPhone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_editEmail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_saveFname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_savePhone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_saveEmail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_deleteAcc_Click(object sender, EventArgs e)
+        {
+            if (accDelete_form == null || accDelete_form.IsDisposed)
+            {
+                accDelete_form = new AccDeleteConfirmForm();
+                accDelete_form.Show();
+            }
+            else
+            {
+                accDelete_form.Focus();
             }
             Close();
         }
