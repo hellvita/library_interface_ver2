@@ -82,5 +82,40 @@ namespace library_interface_ver2
 
             database.closeConenection();
         }
+
+        private void button_downloadBook_Click(object sender, EventArgs e)
+        {
+            database.openConenection();
+            string query_str = $"SELECT * FROM downloaded_books WHERE (BOOK_ID = '{LibraryHomePageForm.selectedBookID}') and (USER_ID = '{UserLoginForm.ulog}') and (BOOK_TYPE_ID = '{LibraryHomePageForm.selectedBookTypeID}')";
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            DataTable table = new DataTable();
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+            if (table.Rows.Count == 0)
+            {
+                string subquery_str = $"INSERT INTO downloaded_books (BOOK_TYPE_ID, BOOK_ID, USER_ID, DOWNLOAD_DATE) VALUES ({LibraryHomePageForm.selectedBookTypeID}, {LibraryHomePageForm.selectedBookID}, {UserLoginForm.ulog}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                MySqlCommand subcommand = new MySqlCommand(subquery_str, database.GetConnection());
+                if (subcommand.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Книга успішно завантажена!", "Успіх!");
+                }
+                else { MessageBox.Show("Не вдалося завантажии книгу!", "Помилка!"); }
+            }
+            else {
+                string subquery_str = $"UPDATE downloaded_books SET DOWNLOAD_DATE = '{DateTime.Now.ToString("yyyy-MM-dd")}' WHERE (BOOK_ID = '{LibraryHomePageForm.selectedBookID}') and (USER_ID = '{UserLoginForm.ulog}') and (BOOK_TYPE_ID = '{LibraryHomePageForm.selectedBookTypeID}')";
+                MySqlCommand subcommand = new MySqlCommand(subquery_str, database.GetConnection());
+                if (subcommand.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Книга успішно завантажена!", "Успіх!");
+                }
+                else { MessageBox.Show("Не вдалося завантажии книгу!", "Помилка!"); }
+            }
+
+            database.closeConenection();
+        }
     }
 }
