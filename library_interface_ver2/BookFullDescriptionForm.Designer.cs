@@ -70,6 +70,7 @@ namespace library_interface_ver2
             this.button_toBook.TabIndex = 15;
             this.button_toBook.Text = "Забронювати";
             this.button_toBook.UseVisualStyleBackColor = true;
+            this.button_toBook.Click += new System.EventHandler(this.button_toBook_Click);
             // 
             // button_downloadBook
             // 

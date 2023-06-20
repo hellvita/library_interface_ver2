@@ -40,3 +40,4 @@ E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.LibraryHomePageForm.resources
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.Properties.Resources.resources
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.BookFullDescriptionForm.resources
+E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.BookingForm.resources

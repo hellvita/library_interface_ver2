@@ -14,6 +14,7 @@ namespace library_interface_ver2
     public partial class BookFullDescriptionForm : Form
     {
         DataBase database = new DataBase();
+        private BookingForm booking_form;
         public BookFullDescriptionForm()
         {
             InitializeComponent();
@@ -116,6 +117,19 @@ namespace library_interface_ver2
             }
 
             database.closeConenection();
+        }
+
+        private void button_toBook_Click(object sender, EventArgs e)
+        {
+            if (booking_form == null || booking_form.IsDisposed)
+            {
+                booking_form = new BookingForm();
+                booking_form.Show();
+            }
+            else
+            {
+                booking_form.Focus();
+            }
         }
     }
 }
