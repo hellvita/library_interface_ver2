@@ -44,6 +44,7 @@ namespace library_interface_ver2
             this.comboBox_subject_areas = new System.Windows.Forms.ComboBox();
             this.comboBox_books_subjects = new System.Windows.Forms.ComboBox();
             this.comboBox_disciplines = new System.Windows.Forms.ComboBox();
+            this.comboBox_language = new System.Windows.Forms.ComboBox();
             this.panel_mainbcg.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -125,6 +126,7 @@ namespace library_interface_ver2
             // 
             // panel_bookSearch
             // 
+            this.panel_bookSearch.Controls.Add(this.comboBox_language);
             this.panel_bookSearch.Controls.Add(this.comboBox_disciplines);
             this.panel_bookSearch.Controls.Add(this.comboBox_books_subjects);
             this.panel_bookSearch.Controls.Add(this.comboBox_subject_areas);
@@ -200,6 +202,15 @@ namespace library_interface_ver2
             this.comboBox_disciplines.Size = new System.Drawing.Size(315, 39);
             this.comboBox_disciplines.TabIndex = 6;
             // 
+            // comboBox_language
+            // 
+            this.comboBox_language.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_language.FormattingEnabled = true;
+            this.comboBox_language.Location = new System.Drawing.Point(828, 85);
+            this.comboBox_language.Name = "comboBox_language";
+            this.comboBox_language.Size = new System.Drawing.Size(190, 39);
+            this.comboBox_language.TabIndex = 7;
+            // 
             // LibraryHomePageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -238,5 +249,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.ComboBox comboBox_subject_areas;
         private System.Windows.Forms.ComboBox comboBox_books_subjects;
         private System.Windows.Forms.ComboBox comboBox_disciplines;
+        private System.Windows.Forms.ComboBox comboBox_language;
     }
 }

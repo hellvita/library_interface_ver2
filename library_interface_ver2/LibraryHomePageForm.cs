@@ -30,6 +30,7 @@ namespace library_interface_ver2
             FillSubjectAreaTypeList();
             FillBooksSubjectTypeList();
             FillDisciplineTypeList();
+            FillLanguageList();
         }
 
         private void FillBookTypesList() {
@@ -149,6 +150,30 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
+        private void FillLanguageList()
+        {
+            database.openConenection();
+
+            string query_str = "SELECT COUNT(*) FROM writing_languages";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var rowsAmount = (long)command.ExecuteScalar();
+
+
+            for (int i = 1; i < rowsAmount + 1; i++)
+            {
+                string subquery_str = $"SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = '{i}'";
+                MySqlCommand subcommand = new MySqlCommand(subquery_str, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string text = obj.ToString();
+                comboBox_language.Items.Add(text);
+            }
+
+            comboBox_language.SelectedIndex = 1;
+
+            database.closeConenection();
+        }
+
         private void UpdateLists(int curValue) {
             switch (curValue) {
                 case 0:
@@ -190,25 +215,5 @@ namespace library_interface_ver2
             UpdateLists(curType);
         }
 
-        /*
-         
-            database.openConenection();
-
-
-            string[] genres_table = { "genres", "subject_areas", "books_subjects", "disciplines" };
-            string[] genres_ID = { "GENRE_ID", "SUB_AREA_ID", "SUBJECT_ID", "DISCIPLINE_ID" };
-            string[] genres_name = { "GENRE", "SUB_AREA", "BOOK_SUBJECT", "DISCIPLINE" };
-
-            string query_str = $"SELECT {genres_name[curBookType]} FROM {genres_table[curBookType]} WHERE {genres_ID[curBookType]} = 1";
-
-            MySqlCommand subcommand = new MySqlCommand(query_str, database.GetConnection());
-            object obj = subcommand.ExecuteScalar();
-            string text = obj.ToString();
-            comboBox_bookGenres.Items.Add(text);
-
-            comboBox_bookGenres.SelectedIndex = 0;
-
-            database.closeConenection();
-         */
     }
 }
