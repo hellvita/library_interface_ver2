@@ -93,17 +93,21 @@ namespace library_interface_ver2
 
         private bool phoneIsOK(string phone) {
             if (phone != "" && phone != "+380 000 000 00 00") {
-                textBox_user_phone.ForeColor = Color.Black;
-                string query_str = $"SELECT PHONE FROM users WHERE PHONE = '{phone}'";
+                Regex r = new Regex("^[0-9+ ']+$");
+                Match match = r.Match(phone);
+                if (match.Success) {
+                    textBox_user_phone.ForeColor = Color.Black;
+                    string query_str = $"SELECT PHONE FROM users WHERE PHONE = '{phone}'";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                DataTable table = new DataTable();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    DataTable table = new DataTable();
 
-                MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+                    MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
 
-                adapter.SelectCommand = command;
-                adapter.Fill(table);
-                if (table.Rows.Count == 0) return true;
+                    adapter.SelectCommand = command;
+                    adapter.Fill(table);
+                    if (table.Rows.Count == 0) return true;
+                }
             }
             textBox_user_phone.ForeColor = Color.Red;
             textBox_user_phone.Text = "+380 000 000 00 00";
@@ -113,17 +117,21 @@ namespace library_interface_ver2
         private bool emailIsOK(string email) {
             if (email != "" && email != "hisentia@gmail.com")
             {
-                textBox_user_email.ForeColor = Color.Black;
-                string query_str = $"SELECT EMAIL FROM users WHERE EMAIL = '{email}'";
+                Regex r = new Regex("^[a-zA-Z0-9_@.']+$");
+                Match match = r.Match(email);
+                if (match.Success) {
+                    textBox_user_email.ForeColor = Color.Black;
+                    string query_str = $"SELECT EMAIL FROM users WHERE EMAIL = '{email}'";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                DataTable table = new DataTable();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    DataTable table = new DataTable();
 
-                MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+                    MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
 
-                adapter.SelectCommand = command;
-                adapter.Fill(table);
-                if (table.Rows.Count == 0) return true;
+                    adapter.SelectCommand = command;
+                    adapter.Fill(table);
+                    if (table.Rows.Count == 0) return true;
+                }
             }
             textBox_user_email.ForeColor = Color.Red;
             textBox_user_email.Text = "hisentia@gmail.com";

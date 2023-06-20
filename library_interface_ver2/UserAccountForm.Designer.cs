@@ -30,6 +30,11 @@ namespace library_interface_ver2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_saveEmail = new System.Windows.Forms.Button();
+            this.button_savePhone = new System.Windows.Forms.Button();
+            this.button_saveFname = new System.Windows.Forms.Button();
+            this.button_history = new System.Windows.Forms.Button();
+            this.button_penalty = new System.Windows.Forms.Button();
             this.button_deleteAcc = new System.Windows.Forms.Button();
             this.button_editEmail = new System.Windows.Forms.Button();
             this.button_editPhone = new System.Windows.Forms.Button();
@@ -46,11 +51,6 @@ namespace library_interface_ver2
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button_penalty = new System.Windows.Forms.Button();
-            this.button_history = new System.Windows.Forms.Button();
-            this.button_saveFname = new System.Windows.Forms.Button();
-            this.button_savePhone = new System.Windows.Forms.Button();
-            this.button_saveEmail = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +83,61 @@ namespace library_interface_ver2
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1008, 600);
             this.panel1.TabIndex = 0;
+            // 
+            // button_saveEmail
+            // 
+            this.button_saveEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_saveEmail.Location = new System.Drawing.Point(957, 319);
+            this.button_saveEmail.Name = "button_saveEmail";
+            this.button_saveEmail.Size = new System.Drawing.Size(45, 42);
+            this.button_saveEmail.TabIndex = 24;
+            this.button_saveEmail.Text = "✔";
+            this.button_saveEmail.UseVisualStyleBackColor = true;
+            this.button_saveEmail.Click += new System.EventHandler(this.button_saveEmail_Click);
+            // 
+            // button_savePhone
+            // 
+            this.button_savePhone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_savePhone.Location = new System.Drawing.Point(956, 258);
+            this.button_savePhone.Name = "button_savePhone";
+            this.button_savePhone.Size = new System.Drawing.Size(45, 42);
+            this.button_savePhone.TabIndex = 23;
+            this.button_savePhone.Text = "✔";
+            this.button_savePhone.UseVisualStyleBackColor = true;
+            this.button_savePhone.Click += new System.EventHandler(this.button_savePhone_Click);
+            // 
+            // button_saveFname
+            // 
+            this.button_saveFname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_saveFname.Location = new System.Drawing.Point(956, 191);
+            this.button_saveFname.Name = "button_saveFname";
+            this.button_saveFname.Size = new System.Drawing.Size(45, 42);
+            this.button_saveFname.TabIndex = 22;
+            this.button_saveFname.Text = "✔";
+            this.button_saveFname.UseVisualStyleBackColor = true;
+            this.button_saveFname.Click += new System.EventHandler(this.button_saveFname_Click);
+            // 
+            // button_history
+            // 
+            this.button_history.AutoSize = true;
+            this.button_history.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_history.Location = new System.Drawing.Point(673, 406);
+            this.button_history.Name = "button_history";
+            this.button_history.Size = new System.Drawing.Size(328, 45);
+            this.button_history.TabIndex = 21;
+            this.button_history.Text = "Переглянути активність";
+            this.button_history.UseVisualStyleBackColor = true;
+            // 
+            // button_penalty
+            // 
+            this.button_penalty.AutoSize = true;
+            this.button_penalty.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_penalty.Location = new System.Drawing.Point(24, 406);
+            this.button_penalty.Name = "button_penalty";
+            this.button_penalty.Size = new System.Drawing.Size(267, 45);
+            this.button_penalty.TabIndex = 20;
+            this.button_penalty.Text = "Переглянути борги";
+            this.button_penalty.UseVisualStyleBackColor = true;
             // 
             // button_deleteAcc
             // 
@@ -253,61 +308,6 @@ namespace library_interface_ver2
             this.label1.Size = new System.Drawing.Size(222, 88);
             this.label1.TabIndex = 1;
             this.label1.Text = "Hisentia";
-            // 
-            // button_penalty
-            // 
-            this.button_penalty.AutoSize = true;
-            this.button_penalty.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_penalty.Location = new System.Drawing.Point(24, 406);
-            this.button_penalty.Name = "button_penalty";
-            this.button_penalty.Size = new System.Drawing.Size(267, 45);
-            this.button_penalty.TabIndex = 20;
-            this.button_penalty.Text = "Переглянути борги";
-            this.button_penalty.UseVisualStyleBackColor = true;
-            // 
-            // button_history
-            // 
-            this.button_history.AutoSize = true;
-            this.button_history.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_history.Location = new System.Drawing.Point(673, 406);
-            this.button_history.Name = "button_history";
-            this.button_history.Size = new System.Drawing.Size(328, 45);
-            this.button_history.TabIndex = 21;
-            this.button_history.Text = "Переглянути активність";
-            this.button_history.UseVisualStyleBackColor = true;
-            // 
-            // button_saveFname
-            // 
-            this.button_saveFname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_saveFname.Location = new System.Drawing.Point(956, 191);
-            this.button_saveFname.Name = "button_saveFname";
-            this.button_saveFname.Size = new System.Drawing.Size(45, 42);
-            this.button_saveFname.TabIndex = 22;
-            this.button_saveFname.Text = "✔";
-            this.button_saveFname.UseVisualStyleBackColor = true;
-            this.button_saveFname.Click += new System.EventHandler(this.button_saveFname_Click);
-            // 
-            // button_savePhone
-            // 
-            this.button_savePhone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_savePhone.Location = new System.Drawing.Point(956, 258);
-            this.button_savePhone.Name = "button_savePhone";
-            this.button_savePhone.Size = new System.Drawing.Size(45, 42);
-            this.button_savePhone.TabIndex = 23;
-            this.button_savePhone.Text = "✔";
-            this.button_savePhone.UseVisualStyleBackColor = true;
-            this.button_savePhone.Click += new System.EventHandler(this.button_savePhone_Click);
-            // 
-            // button_saveEmail
-            // 
-            this.button_saveEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_saveEmail.Location = new System.Drawing.Point(957, 319);
-            this.button_saveEmail.Name = "button_saveEmail";
-            this.button_saveEmail.Size = new System.Drawing.Size(45, 42);
-            this.button_saveEmail.TabIndex = 24;
-            this.button_saveEmail.Text = "✔";
-            this.button_saveEmail.UseVisualStyleBackColor = true;
-            this.button_saveEmail.Click += new System.EventHandler(this.button_saveEmail_Click);
             // 
             // UserAccountForm
             // 
