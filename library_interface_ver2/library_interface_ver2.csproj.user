@@ -16,6 +16,9 @@
     <Compile Update="LibraryHomePageForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UserLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

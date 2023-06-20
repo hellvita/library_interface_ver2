@@ -87,6 +87,7 @@ namespace library_interface_ver2
             this.panel_bookSearch.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_noresults.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_mainbcg
@@ -244,7 +245,6 @@ namespace library_interface_ver2
             // 
             // panel_shortBookDescr1
             // 
-
             this.panel_shortBookDescr1.Controls.Add(this.label_description1);
             this.panel_shortBookDescr1.Controls.Add(this.label_bookYear1);
             this.panel_shortBookDescr1.Controls.Add(this.label_author1);
@@ -503,6 +503,7 @@ namespace library_interface_ver2
             this.button_userAcc.TabIndex = 4;
             this.button_userAcc.Text = "Переглянути";
             this.button_userAcc.UseVisualStyleBackColor = true;
+            this.button_userAcc.Click += new System.EventHandler(this.button_userAcc_Click);
             // 
             // label_userID
             // 
@@ -592,6 +593,7 @@ namespace library_interface_ver2
             this.panel_title.ResumeLayout(false);
             this.panel_title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel_noresults.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -16,6 +16,7 @@ namespace library_interface_ver2
         DataBase database = new DataBase();
         private UserLoginForm login_form;
         private BookFullDescriptionForm description_form;
+        private UserAccountForm uAcc_form;
         public static int selectedBookID;
         public static int selectedBookTypeID;
         public static int selectedBookGenreID;
@@ -440,6 +441,20 @@ namespace library_interface_ver2
         {
             panel_mainBooksOverview.Visible = false;
             panel_noresults.Visible = true;
+        }
+
+        private void button_userAcc_Click(object sender, EventArgs e)
+        {
+            if (uAcc_form == null || uAcc_form.IsDisposed)
+            {
+                uAcc_form = new UserAccountForm();
+                uAcc_form.Show();
+            }
+            else
+            {
+                uAcc_form.Focus();
+            }
+            Close();
         }
     }
 }
