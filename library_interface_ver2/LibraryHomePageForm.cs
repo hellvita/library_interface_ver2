@@ -15,11 +15,12 @@ namespace library_interface_ver2
         public LibraryHomePageForm()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void LibraryHomePageForm_Load(object sender, EventArgs e)
         {
-
+            label_userID.Text = "Користувач №" + UserLoginForm.ulog;
         }
     }
 }

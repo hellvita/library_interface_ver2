@@ -16,6 +16,7 @@ namespace library_interface_ver2
         DataBase database = new DataBase();
         private UserLogSinginForm home_form;
         private LibraryHomePageForm lib_homepage_form;
+        public static string ulog = "";
         public UserLoginForm()
         {
             InitializeComponent();
@@ -47,6 +48,8 @@ namespace library_interface_ver2
         {
             var userLogin = textBox_user_login.Text;
             var userPwd = md5.hashPwd(textBox_user_pwd.Text);
+            ulog = userLogin;
+
 
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             DataTable table = new DataTable();
