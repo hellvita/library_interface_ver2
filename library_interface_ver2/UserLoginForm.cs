@@ -15,6 +15,7 @@ namespace library_interface_ver2
     {
         DataBase database = new DataBase();
         private UserLogSinginForm home_form;
+        private LibraryHomePageForm lib_homepage_form;
         public UserLoginForm()
         {
             InitializeComponent();
@@ -60,10 +61,17 @@ namespace library_interface_ver2
                 adapter.Fill(table);
             }
 
-
-
             if (table.Rows.Count == 1) {
                 // login success
+                if (lib_homepage_form == null || lib_homepage_form.IsDisposed)
+                {
+                    lib_homepage_form = new LibraryHomePageForm();
+                    lib_homepage_form.Show();
+                }
+                else
+                {
+                    lib_homepage_form.Focus();
+                }
                 Close();
             }
             else {
