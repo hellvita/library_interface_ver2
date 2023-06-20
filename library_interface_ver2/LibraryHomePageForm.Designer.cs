@@ -71,6 +71,8 @@ namespace library_interface_ver2
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_home = new System.Windows.Forms.Button();
+            this.button_exit = new System.Windows.Forms.Button();
             this.panel_mainbcg.SuspendLayout();
             this.panel_mainBooksOverview.SuspendLayout();
             this.panel_shortBookDescr3.SuspendLayout();
@@ -161,6 +163,7 @@ namespace library_interface_ver2
             this.linkLabel_bookName3.TabIndex = 1;
             this.linkLabel_bookName3.TabStop = true;
             this.linkLabel_bookName3.Text = "Основи філософії";
+            this.linkLabel_bookName3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_bookName3_LinkClicked);
             // 
             // pictureBox_bookCover3
             // 
@@ -224,6 +227,7 @@ namespace library_interface_ver2
             this.linkLabel_bookName2.TabIndex = 1;
             this.linkLabel_bookName2.TabStop = true;
             this.linkLabel_bookName2.Text = "Основи філософії";
+            this.linkLabel_bookName2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_bookName2_LinkClicked);
             // 
             // pictureBox_bookCover2
             // 
@@ -287,6 +291,7 @@ namespace library_interface_ver2
             this.linkLabel_bookName1.TabIndex = 1;
             this.linkLabel_bookName1.TabStop = true;
             this.linkLabel_bookName1.Text = "Основи філософії";
+            this.linkLabel_bookName1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_bookName1_LinkClicked);
             // 
             // pictureBox_bookCover1
             // 
@@ -352,6 +357,7 @@ namespace library_interface_ver2
             // 
             // panel_bookSearch
             // 
+            this.panel_bookSearch.Controls.Add(this.button_home);
             this.panel_bookSearch.Controls.Add(this.label_searcingTips);
             this.panel_bookSearch.Controls.Add(this.comboBox_language);
             this.panel_bookSearch.Controls.Add(this.comboBox_disciplines);
@@ -450,6 +456,7 @@ namespace library_interface_ver2
             // 
             // panel_title
             // 
+            this.panel_title.Controls.Add(this.button_exit);
             this.panel_title.Controls.Add(this.button_userAcc);
             this.panel_title.Controls.Add(this.label_userID);
             this.panel_title.Controls.Add(this.label2);
@@ -463,9 +470,9 @@ namespace library_interface_ver2
             // button_userAcc
             // 
             this.button_userAcc.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_userAcc.Location = new System.Drawing.Point(428, 60);
+            this.button_userAcc.Location = new System.Drawing.Point(497, 60);
             this.button_userAcc.Name = "button_userAcc";
-            this.button_userAcc.Size = new System.Drawing.Size(250, 48);
+            this.button_userAcc.Size = new System.Drawing.Size(181, 48);
             this.button_userAcc.TabIndex = 4;
             this.button_userAcc.Text = "Переглянути";
             this.button_userAcc.UseVisualStyleBackColor = true;
@@ -510,6 +517,28 @@ namespace library_interface_ver2
             this.label1.Size = new System.Drawing.Size(222, 88);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hisentia";
+            // 
+            // button_home
+            // 
+            this.button_home.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_home.Location = new System.Drawing.Point(1634, 17);
+            this.button_home.Name = "button_home";
+            this.button_home.Size = new System.Drawing.Size(65, 53);
+            this.button_home.TabIndex = 9;
+            this.button_home.Text = "🏠";
+            this.button_home.UseVisualStyleBackColor = true;
+            this.button_home.Click += new System.EventHandler(this.button_home_Click);
+            // 
+            // button_exit
+            // 
+            this.button_exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_exit.Location = new System.Drawing.Point(428, 60);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(63, 48);
+            this.button_exit.TabIndex = 5;
+            this.button_exit.Text = "🚪";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // LibraryHomePageForm
             // 
@@ -587,5 +616,7 @@ namespace library_interface_ver2
         private System.Windows.Forms.Label label_author2;
         private System.Windows.Forms.LinkLabel linkLabel_bookName2;
         private System.Windows.Forms.PictureBox pictureBox_bookCover2;
+        private System.Windows.Forms.Button button_home;
+        private System.Windows.Forms.Button button_exit;
     }
 }

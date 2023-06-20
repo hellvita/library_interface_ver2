@@ -14,7 +14,7 @@ namespace library_interface_ver2
     public partial class LibraryHomePageForm : Form
     {
         DataBase database = new DataBase();
-
+        private UserLoginForm login_form;
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -184,7 +184,6 @@ namespace library_interface_ver2
                 case 2: { fillFirstField(true); fillSecondField(true); } break;
                 case 3: { fillFirstField(true); fillSecondField(true); fillThirdField(true); } break;
             }
-
           
         }
 
@@ -345,6 +344,40 @@ namespace library_interface_ver2
         private void ComboBoxSelectedIndexChanged(object sender, EventArgs e) {
             int curType = comboBox_bookTypes.SelectedIndex;
             UpdateLists(curType);
+        }
+
+        private void button_home_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel_bookName1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabel_bookName2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void linkLabel_bookName3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+            if (login_form == null || login_form.IsDisposed)
+            {
+                login_form = new UserLoginForm();
+                login_form.Show();
+            }
+            else
+            {
+                login_form.Focus();
+            }
+            Close();
         }
     }
 }
