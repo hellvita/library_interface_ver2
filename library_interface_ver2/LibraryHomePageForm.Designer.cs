@@ -36,14 +36,20 @@ namespace library_interface_ver2
             this.label2 = new System.Windows.Forms.Label();
             this.label_userID = new System.Windows.Forms.Label();
             this.button_userAcc = new System.Windows.Forms.Button();
+            this.panel_bookSearch = new System.Windows.Forms.Panel();
+            this.textBox_search = new System.Windows.Forms.TextBox();
+            this.button_search = new System.Windows.Forms.Button();
+            this.comboBox_bookTypes = new System.Windows.Forms.ComboBox();
             this.panel_mainbcg.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_bookSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_mainbcg
             // 
             this.panel_mainbcg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(176)))), ((int)(((byte)(156)))));
+            this.panel_mainbcg.Controls.Add(this.panel_bookSearch);
             this.panel_mainbcg.Controls.Add(this.panel_title);
             this.panel_mainbcg.Location = new System.Drawing.Point(12, 12);
             this.panel_mainbcg.Name = "panel_mainbcg";
@@ -113,6 +119,43 @@ namespace library_interface_ver2
             this.button_userAcc.Text = "Переглянути";
             this.button_userAcc.UseVisualStyleBackColor = true;
             // 
+            // panel_bookSearch
+            // 
+            this.panel_bookSearch.Controls.Add(this.comboBox_bookTypes);
+            this.panel_bookSearch.Controls.Add(this.button_search);
+            this.panel_bookSearch.Controls.Add(this.textBox_search);
+            this.panel_bookSearch.Location = new System.Drawing.Point(13, 166);
+            this.panel_bookSearch.Name = "panel_bookSearch";
+            this.panel_bookSearch.Size = new System.Drawing.Size(1721, 146);
+            this.panel_bookSearch.TabIndex = 1;
+            // 
+            // textBox_search
+            // 
+            this.textBox_search.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_search.Location = new System.Drawing.Point(85, 17);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(1440, 53);
+            this.textBox_search.TabIndex = 0;
+            // 
+            // button_search
+            // 
+            this.button_search.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_search.Location = new System.Drawing.Point(1552, 17);
+            this.button_search.Name = "button_search";
+            this.button_search.Size = new System.Drawing.Size(66, 53);
+            this.button_search.TabIndex = 1;
+            this.button_search.Text = "🔍";
+            this.button_search.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_bookTypes
+            // 
+            this.comboBox_bookTypes.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_bookTypes.FormattingEnabled = true;
+            this.comboBox_bookTypes.Location = new System.Drawing.Point(85, 85);
+            this.comboBox_bookTypes.Name = "comboBox_bookTypes";
+            this.comboBox_bookTypes.Size = new System.Drawing.Size(397, 39);
+            this.comboBox_bookTypes.TabIndex = 2;
+            // 
             // LibraryHomePageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -128,6 +171,8 @@ namespace library_interface_ver2
             this.panel_title.ResumeLayout(false);
             this.panel_title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel_bookSearch.ResumeLayout(false);
+            this.panel_bookSearch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -141,5 +186,9 @@ namespace library_interface_ver2
         private System.Windows.Forms.Button button_userAcc;
         private System.Windows.Forms.Label label_userID;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel_bookSearch;
+        private System.Windows.Forms.TextBox textBox_search;
+        private System.Windows.Forms.Button button_search;
+        private System.Windows.Forms.ComboBox comboBox_bookTypes;
     }
 }
