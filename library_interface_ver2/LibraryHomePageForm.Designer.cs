@@ -129,7 +129,6 @@ namespace library_interface_ver2
             this.label_description3.Size = new System.Drawing.Size(277, 349);
             this.label_description3.TabIndex = 4;
             this.label_description3.Text = resources.GetString("label_description3.Text");
-            this.label_description3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_bookYear3
             // 
@@ -193,7 +192,6 @@ namespace library_interface_ver2
             this.label_description2.Size = new System.Drawing.Size(277, 349);
             this.label_description2.TabIndex = 4;
             this.label_description2.Text = resources.GetString("label_description2.Text");
-            this.label_description2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_bookYear2
             // 
@@ -257,7 +255,6 @@ namespace library_interface_ver2
             this.label_description1.Size = new System.Drawing.Size(277, 349);
             this.label_description1.TabIndex = 4;
             this.label_description1.Text = resources.GetString("label_description1.Text");
-            this.label_description1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_bookYear1
             // 
@@ -316,6 +313,8 @@ namespace library_interface_ver2
             // 
             this.comboBox_pages.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox_pages.FormattingEnabled = true;
+            this.comboBox_pages.Items.AddRange(new object[] {
+            "1"});
             this.comboBox_pages.Location = new System.Drawing.Point(164, 14);
             this.comboBox_pages.Name = "comboBox_pages";
             this.comboBox_pages.Size = new System.Drawing.Size(83, 39);

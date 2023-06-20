@@ -25,12 +25,15 @@ namespace library_interface_ver2
         private void LibraryHomePageForm_Load(object sender, EventArgs e)
         {
             label_userID.Text = "Користувач №" + UserLoginForm.ulog;
+            comboBox_pages.SelectedIndex = 0;
             FillBookTypesList();
             FillGenreTypeList();
             FillSubjectAreaTypeList();
             FillBooksSubjectTypeList();
             FillDisciplineTypeList();
             FillLanguageList();
+            fillBooksPreviewOf(3);
+            
         }
 
         private void FillBookTypesList() {
@@ -172,6 +175,135 @@ namespace library_interface_ver2
             comboBox_language.SelectedIndex = 1;
 
             database.closeConenection();
+        }
+
+        private void fillBooksPreviewOf(int field_amount) {
+            
+            switch (field_amount) {
+                case 1: { fillFirstField(true); } break;
+                case 2: { fillFirstField(true); fillSecondField(true); } break;
+                case 3: { fillFirstField(true); fillSecondField(true); fillThirdField(true); } break;
+            }
+
+          
+        }
+
+        private void fillFirstField(bool homepage) {
+            database.openConenection();
+            if (homepage) {
+                string query_getCover11 = "SELECT COVER FROM fiction WHERE BOOK_TYPE_ID = 1 AND BOOK_ID = 1;";
+                MySqlCommand subcommand = new MySqlCommand(query_getCover11, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string coverPath = obj.ToString();
+                pictureBox_bookCover1.Image = Image.FromFile($"{coverPath}");
+
+                string query_getName11 = "SELECT BOOK_NAME FROM fiction WHERE BOOK_TYPE_ID = 1 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getName11, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string nameStr = getNsymb(obj.ToString(), 15, 1);
+                linkLabel_bookName1.Text = $"{nameStr}";
+
+                string query_getAuthor11 = "SELECT AUTHOR FROM fiction WHERE BOOK_TYPE_ID = 1 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getAuthor11, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string autthorStr = obj.ToString();
+                label_author1.Text = $"{autthorStr}";
+
+                string query_getYear11 = "SELECT PUBLICATION_YEAR FROM fiction WHERE BOOK_TYPE_ID = 1 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getYear11, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string yearStr = obj.ToString();
+                label_bookYear1.Text = $"{yearStr}";
+
+                string query_getDescription11 = "SELECT BOOK_DESCRIPTION FROM fiction WHERE BOOK_TYPE_ID = 1 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getDescription11, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string descriptionStr = getNsymb(obj.ToString(), 360, 2);
+                label_description1.Text = $"{descriptionStr}";
+            }
+            database.closeConenection();
+        }
+        private void fillSecondField(bool homepage) {
+            database.openConenection();
+            if (homepage)
+            {
+                string query_getCover21 = "SELECT COVER FROM scientic WHERE BOOK_TYPE_ID = 2 AND BOOK_ID = 1;";
+                MySqlCommand subcommand = new MySqlCommand(query_getCover21, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string coverPath = obj.ToString();
+                pictureBox_bookCover2.Image = Image.FromFile($"{coverPath}");
+
+                string query_getName21 = "SELECT BOOK_NAME FROM scientic WHERE BOOK_TYPE_ID = 2 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getName21, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string nameStr = getNsymb(obj.ToString(), 15, 1);
+                linkLabel_bookName2.Text = $"{nameStr}";
+
+                string query_getAuthor21 = "SELECT AUTHOR FROM scientic WHERE BOOK_TYPE_ID = 2 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getAuthor21, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string autthorStr = obj.ToString();
+                label_author2.Text = $"{autthorStr}";
+
+                string query_getYear21 = "SELECT PUBLICATION_YEAR FROM scientic WHERE BOOK_TYPE_ID = 2 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getYear21, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string yearStr = obj.ToString();
+                label_bookYear2.Text = $"{yearStr}";
+
+                string query_getDescription21 = "SELECT BOOK_DESCRIPTION FROM scientic WHERE BOOK_TYPE_ID = 2 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getDescription21, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string descriptionStr = getNsymb(obj.ToString(), 360, 2);
+                label_description2.Text = $"{descriptionStr}";
+            }
+            database.closeConenection();
+        }
+        private void fillThirdField(bool homepage) {
+            database.openConenection();
+            if (homepage)
+            {
+                string query_getCover31 = "SELECT COVER FROM documentary WHERE BOOK_TYPE_ID = 3 AND BOOK_ID = 1;";
+                MySqlCommand subcommand = new MySqlCommand(query_getCover31, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string coverPath = obj.ToString();
+                pictureBox_bookCover3.Image = Image.FromFile($"{coverPath}");
+
+                string query_getName31 = "SELECT BOOK_NAME FROM documentary WHERE BOOK_TYPE_ID = 3 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getName31, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string nameStr = getNsymb(obj.ToString(), 15, 1);
+                linkLabel_bookName3.Text = $"{nameStr}";
+
+                string query_getAuthor31 = "SELECT AUTHOR FROM documentary WHERE BOOK_TYPE_ID = 3 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getAuthor31, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string autthorStr = obj.ToString();
+                label_author3.Text = $"{autthorStr}";
+
+                string query_getYear31 = "SELECT PUBLICATION_YEAR FROM documentary WHERE BOOK_TYPE_ID = 3 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getYear31, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string yearStr = obj.ToString();
+                label_bookYear3.Text = $"{yearStr}";
+
+                string query_getDescription31 = "SELECT BOOK_DESCRIPTION FROM documentary WHERE BOOK_TYPE_ID = 3 AND BOOK_ID = 1;";
+                subcommand = new MySqlCommand(query_getDescription31, database.GetConnection());
+                obj = subcommand.ExecuteScalar();
+                string descriptionStr = getNsymb(obj.ToString(), 360, 2);
+                label_description3.Text = $"{descriptionStr}";
+            }
+            database.closeConenection();
+        }
+
+        private string getNsymb(string str, int lenth, int name1_desc2) {
+
+            if (str.Length > lenth) {
+                str = str.Substring(0, lenth);
+                if (name1_desc2 == 1) str += "...";
+            }
+            if(name1_desc2 == 2) str += "...";
+            return str;
         }
 
         private void UpdateLists(int curValue) {
