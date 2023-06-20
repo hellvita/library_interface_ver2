@@ -74,7 +74,7 @@ namespace library_interface_ver2
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_noresults = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_noResultMsg = new System.Windows.Forms.Label();
             this.panel_mainbcg.SuspendLayout();
             this.panel_mainBooksOverview.SuspendLayout();
             this.panel_shortBookDescr3.SuspendLayout();
@@ -87,7 +87,6 @@ namespace library_interface_ver2
             this.panel_bookSearch.SuspendLayout();
             this.panel_title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel_noresults.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_mainbcg
@@ -96,6 +95,7 @@ namespace library_interface_ver2
             this.panel_mainbcg.Controls.Add(this.panel_mainBooksOverview);
             this.panel_mainbcg.Controls.Add(this.panel_bookSearch);
             this.panel_mainbcg.Controls.Add(this.panel_title);
+            this.panel_mainbcg.Controls.Add(this.panel_noresults);
             this.panel_mainbcg.Location = new System.Drawing.Point(12, 12);
             this.panel_mainbcg.Name = "panel_mainbcg";
             this.panel_mainbcg.Size = new System.Drawing.Size(1753, 932);
@@ -105,7 +105,6 @@ namespace library_interface_ver2
             // 
             this.panel_mainBooksOverview.AutoScroll = true;
             this.panel_mainBooksOverview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(172)))));
-            this.panel_mainBooksOverview.Controls.Add(this.panel_noresults);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr3);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr2);
             this.panel_mainBooksOverview.Controls.Add(this.panel_shortBookDescr1);
@@ -245,6 +244,7 @@ namespace library_interface_ver2
             // 
             // panel_shortBookDescr1
             // 
+
             this.panel_shortBookDescr1.Controls.Add(this.label_description1);
             this.panel_shortBookDescr1.Controls.Add(this.label_bookYear1);
             this.panel_shortBookDescr1.Controls.Add(this.label_author1);
@@ -460,6 +460,7 @@ namespace library_interface_ver2
             this.button_search.TabIndex = 1;
             this.button_search.Text = "🔍";
             this.button_search.UseVisualStyleBackColor = true;
+            this.button_search.Click += new System.EventHandler(this.button_search_Click);
             // 
             // textBox_search
             // 
@@ -546,21 +547,21 @@ namespace library_interface_ver2
             // 
             // panel_noresults
             // 
-            this.panel_noresults.Controls.Add(this.label4);
-            this.panel_noresults.Location = new System.Drawing.Point(0, -1);
+            this.panel_noresults.Controls.Add(this.label_noResultMsg);
+            this.panel_noresults.Location = new System.Drawing.Point(13, 319);
             this.panel_noresults.Name = "panel_noresults";
             this.panel_noresults.Size = new System.Drawing.Size(1721, 614);
             this.panel_noresults.TabIndex = 6;
             // 
-            // label4
+            // label_noResultMsg
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(108, 236);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1271, 46);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "На жаль, немає результатів, що відповідають заданим критеріям пошуку ;(";
+            this.label_noResultMsg.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_noResultMsg.Location = new System.Drawing.Point(0, 197);
+            this.label_noResultMsg.Name = "label_noResultMsg";
+            this.label_noResultMsg.Size = new System.Drawing.Size(1712, 47);
+            this.label_noResultMsg.TabIndex = 1;
+            this.label_noResultMsg.Text = "На жаль, немає результатів, що відповідають заданим критеріям пошуку ;(";
+            this.label_noResultMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LibraryHomePageForm
             // 
@@ -591,8 +592,6 @@ namespace library_interface_ver2
             this.panel_title.ResumeLayout(false);
             this.panel_title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel_noresults.ResumeLayout(false);
-            this.panel_noresults.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -643,6 +642,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.Button button_home;
         private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Panel panel_noresults;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_noResultMsg;
     }
 }

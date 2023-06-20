@@ -435,5 +435,11 @@ namespace library_interface_ver2
             }
             Close();
         }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            panel_mainBooksOverview.Visible = false;
+            panel_noresults.Visible = true;
+        }
     }
 }
