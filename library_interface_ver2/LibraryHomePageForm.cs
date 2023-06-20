@@ -214,6 +214,5 @@ namespace library_interface_ver2
             int curType = comboBox_bookTypes.SelectedIndex;
             UpdateLists(curType);
         }
-
     }
 }
