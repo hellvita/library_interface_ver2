@@ -28,7 +28,8 @@ namespace library_interface_ver2
             FillBookTypesList();
             FillGenreTypeList();
             FillSubjectAreaTypeList();
-            FillBooks_SubjectTypeList();
+            FillBooksSubjectTypeList();
+            FillDisciplineTypeList();
         }
 
         private void FillBookTypesList() {
@@ -100,7 +101,7 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
-        private void FillBooks_SubjectTypeList()
+        private void FillBooksSubjectTypeList()
         {
             database.openConenection();
 
@@ -120,6 +121,30 @@ namespace library_interface_ver2
             }
 
             comboBox_books_subjects.SelectedIndex = 0;
+
+            database.closeConenection();
+        }
+
+        private void FillDisciplineTypeList()
+        {
+            database.openConenection();
+
+            string query_str = "SELECT COUNT(*) FROM disciplines";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var rowsAmount = (long)command.ExecuteScalar();
+
+
+            for (int i = 1; i < rowsAmount + 1; i++)
+            {
+                string subquery_str = $"SELECT DISCIPLINE FROM disciplines WHERE DISCIPLINE_ID = '{i}'";
+                MySqlCommand subcommand = new MySqlCommand(subquery_str, database.GetConnection());
+                object obj = subcommand.ExecuteScalar();
+                string text = obj.ToString();
+                comboBox_disciplines.Items.Add(text);
+            }
+
+            comboBox_disciplines.SelectedIndex = 0;
 
             database.closeConenection();
         }
