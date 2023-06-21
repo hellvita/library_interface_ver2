@@ -15,6 +15,7 @@ namespace library_interface_ver2
     {
         DataBase database = new DataBase();
         private LibrarianHomePageForm homepage_form;
+        private DeleteBookForm deleteBook_form;
         private string curBookType, curBookName, curBookAuthor, curBookYear, curBookGenre;
         private string curBookCover, curBookElCopy, curBookAmount, curBookDescr, curBookLanguage;
         private bool typeFielsIsEmpty, nameIsEmpty, authorIsEmpty, yearIsEmpty, genreIsEmpty;
@@ -108,7 +109,7 @@ namespace library_interface_ver2
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            
+            showAllFiction();
         }
 
         private void FillBookTypesList()
@@ -309,7 +310,15 @@ namespace library_interface_ver2
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-            
+            if (deleteBook_form == null || deleteBook_form.IsDisposed)
+            {
+                deleteBook_form = new DeleteBookForm();
+                deleteBook_form.Show();
+            }
+            else
+            {
+                deleteBook_form.Focus();
+            }
         }
 
 
