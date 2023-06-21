@@ -33,8 +33,8 @@ namespace library_interface_ver2
             this.panel_gridview = new System.Windows.Forms.Panel();
             this.dataGV_books = new System.Windows.Forms.DataGridView();
             this.panel_editLabels = new System.Windows.Forms.Panel();
-            this.comboBox_comboBox_bookGenres = new System.Windows.Forms.ComboBox();
-            this.comboBox_comboBox_subject_areas = new System.Windows.Forms.ComboBox();
+            this.comboBox_bookGenres = new System.Windows.Forms.ComboBox();
+            this.comboBox_subject_areas = new System.Windows.Forms.ComboBox();
             this.comboBox_books_subjects = new System.Windows.Forms.ComboBox();
             this.label_electronCopy = new System.Windows.Forms.Label();
             this.textBox_electronCopy = new System.Windows.Forms.TextBox();
@@ -67,6 +67,7 @@ namespace library_interface_ver2
             this.button_back = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_clearFields = new System.Windows.Forms.Button();
             this.panel_mainBcg.SuspendLayout();
             this.panel_gridview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_books)).BeginInit();
@@ -107,8 +108,9 @@ namespace library_interface_ver2
             // 
             // panel_editLabels
             // 
-            this.panel_editLabels.Controls.Add(this.comboBox_comboBox_bookGenres);
-            this.panel_editLabels.Controls.Add(this.comboBox_comboBox_subject_areas);
+            this.panel_editLabels.Controls.Add(this.button_clearFields);
+            this.panel_editLabels.Controls.Add(this.comboBox_bookGenres);
+            this.panel_editLabels.Controls.Add(this.comboBox_subject_areas);
             this.panel_editLabels.Controls.Add(this.comboBox_books_subjects);
             this.panel_editLabels.Controls.Add(this.label_electronCopy);
             this.panel_editLabels.Controls.Add(this.textBox_electronCopy);
@@ -139,23 +141,23 @@ namespace library_interface_ver2
             this.panel_editLabels.Size = new System.Drawing.Size(1760, 250);
             this.panel_editLabels.TabIndex = 14;
             // 
-            // comboBox_comboBox_bookGenres
+            // comboBox_bookGenres
             // 
-            this.comboBox_comboBox_bookGenres.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox_comboBox_bookGenres.FormattingEnabled = true;
-            this.comboBox_comboBox_bookGenres.Location = new System.Drawing.Point(928, 44);
-            this.comboBox_comboBox_bookGenres.Name = "comboBox_comboBox_bookGenres";
-            this.comboBox_comboBox_bookGenres.Size = new System.Drawing.Size(315, 39);
-            this.comboBox_comboBox_bookGenres.TabIndex = 37;
+            this.comboBox_bookGenres.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_bookGenres.FormattingEnabled = true;
+            this.comboBox_bookGenres.Location = new System.Drawing.Point(928, 42);
+            this.comboBox_bookGenres.Name = "comboBox_bookGenres";
+            this.comboBox_bookGenres.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_bookGenres.TabIndex = 37;
             // 
-            // comboBox_comboBox_subject_areas
+            // comboBox_subject_areas
             // 
-            this.comboBox_comboBox_subject_areas.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox_comboBox_subject_areas.FormattingEnabled = true;
-            this.comboBox_comboBox_subject_areas.Location = new System.Drawing.Point(928, 44);
-            this.comboBox_comboBox_subject_areas.Name = "comboBox_comboBox_subject_areas";
-            this.comboBox_comboBox_subject_areas.Size = new System.Drawing.Size(315, 39);
-            this.comboBox_comboBox_subject_areas.TabIndex = 36;
+            this.comboBox_subject_areas.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_subject_areas.FormattingEnabled = true;
+            this.comboBox_subject_areas.Location = new System.Drawing.Point(928, 42);
+            this.comboBox_subject_areas.Name = "comboBox_subject_areas";
+            this.comboBox_subject_areas.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_subject_areas.TabIndex = 36;
             // 
             // comboBox_books_subjects
             // 
@@ -470,6 +472,19 @@ namespace library_interface_ver2
             this.label1.TabIndex = 1;
             this.label1.Text = "Hisentia";
             // 
+            // button_clearFields
+            // 
+            this.button_clearFields.AutoSize = true;
+            this.button_clearFields.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_clearFields.Location = new System.Drawing.Point(1591, 36);
+            this.button_clearFields.Name = "button_clearFields";
+            this.button_clearFields.Size = new System.Drawing.Size(59, 53);
+            this.button_clearFields.TabIndex = 38;
+            this.button_clearFields.Text = "⟲";
+            this.button_clearFields.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button_clearFields.UseVisualStyleBackColor = true;
+            this.button_clearFields.Click += new System.EventHandler(this.button_clearFields_Click);
+            // 
             // EditBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -527,9 +542,10 @@ namespace library_interface_ver2
         private System.Windows.Forms.TextBox textBox_amount;
         private System.Windows.Forms.Label label_cover;
         private System.Windows.Forms.TextBox textBox_cover;
-        private System.Windows.Forms.ComboBox comboBox_comboBox_bookGenres;
-        private System.Windows.Forms.ComboBox comboBox_comboBox_subject_areas;
+        private System.Windows.Forms.ComboBox comboBox_bookGenres;
+        private System.Windows.Forms.ComboBox comboBox_subject_areas;
         private System.Windows.Forms.ComboBox comboBox_books_subjects;
         private System.Windows.Forms.DataGridView dataGV_books;
+        private System.Windows.Forms.Button button_clearFields;
     }
 }
