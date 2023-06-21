@@ -190,9 +190,9 @@ namespace library_interface_ver2
         private void fillBooksPreviewOf(int field_amount) {
             
             switch (field_amount) {
-                case 1: { fillFirstField(true, false, this); } break;
-                case 2: { fillFirstField(true, false, this); fillSecondField(true, false, this); } break;
-                case 3: { fillFirstField(true, false, this); fillSecondField(true, false, this); fillThirdField(true, false, this); } break;
+                case 1: { fillFirstField(true, false, searchByKeyWords, this); } break;
+                case 2: { fillFirstField(true, false, searchByKeyWords, this); fillSecondField(true, false, searchByKeyWords, this); } break;
+                case 3: { fillFirstField(true, false, searchByKeyWords, this); fillSecondField(true, false, searchByKeyWords, this); fillThirdField(true, false, searchByKeyWords, this); } break;
             }
           
         }
@@ -253,15 +253,25 @@ namespace library_interface_ver2
         }
         private void execGetGenreQuery(string table, int typeID, int bookID, int field, string genreType) {
             database.openConenection();
-            string query_getGenreID11 = $"SELECT {genreType} FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
-            MySqlCommand subcommand = new MySqlCommand(query_getGenreID11, database.GetConnection());
+            string query_getGenreID = $"SELECT {genreType} FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
+            MySqlCommand subcommand = new MySqlCommand(query_getGenreID, database.GetConnection());
             if (field == 1) field1_book_genre_id = (int)subcommand.ExecuteScalar();
             else if(field == 2) field2_book_genre_id = (int)subcommand.ExecuteScalar(); 
             else if(field == 3) field3_book_genre_id = (int)subcommand.ExecuteScalar();
             database.closeConenection();
         }
-        private void fillFirstField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
-            panel_shortBookDescr1.Visible = true;
+        private void execGetBookQuery(string table, int field)
+        {
+            database.openConenection();
+            string query_getBookID = $"SELECT MAX(BOOK_ID) FROM {table} WHERE BOOK_NAME LIKE '%{userText}%';";
+            MySqlCommand subcommand = new MySqlCommand(query_getBookID, database.GetConnection());
+            if (field == 1) field1_book_id = (int)subcommand.ExecuteScalar();
+            else if (field == 2) field2_book_id = (int)subcommand.ExecuteScalar();
+            else if (field == 3) field3_book_id = (int)subcommand.ExecuteScalar();
+            database.closeConenection();
+        }
+        private void fillFirstField(bool homepage, bool thisIsEmpty, bool byKeyWords, LibraryHomePageForm form) {
+            form.panel_shortBookDescr1.Visible = true;
             if (homepage)
             {
                 field1_book_id = 1; field1_book_type_id = 1;
@@ -275,7 +285,7 @@ namespace library_interface_ver2
 
                 execGetGenreQuery(field1_table, field1_book_type_id, field1_book_id, 1, field1_genre_type);
             }
-            else if (!thisIsEmpty) { 
+            else if (!thisIsEmpty && !byKeyWords) {
                 field1_book_id = 1; field1_book_type_id = GETcurTypeID();
                 field1_table = GETcurTable(); field1_book_genre_id = GETcurGenreID();
 
@@ -284,10 +294,19 @@ namespace library_interface_ver2
                 execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
                 execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
                 execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
-            }            
+            }
+            else if (byKeyWords) {
+                execGetBookQuery(field1_table, 1);
+
+                execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+            }
         }
-        private void fillSecondField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
-            panel_shortBookDescr2.Visible = true;
+        private void fillSecondField(bool homepage, bool thisIsEmpty, bool byKeyWords, LibraryHomePageForm form) {
+            form.panel_shortBookDescr2.Visible = true;
             if (homepage)
             {
                 field2_book_id = 1; field2_book_type_id = 2;
@@ -301,7 +320,7 @@ namespace library_interface_ver2
 
                 execGetGenreQuery(field2_table, field2_book_type_id, field2_book_id, 2, field2_genre_type);
             }
-            else if (!thisIsEmpty)
+            else if (!thisIsEmpty && !byKeyWords)
             {
                 field2_book_id = 2; field2_book_type_id = GETcurTypeID();
                 field2_table = GETcurTable(); field2_book_genre_id = GETcurGenreID();
@@ -312,9 +331,13 @@ namespace library_interface_ver2
                 execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
                 execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
             }
+            else if (byKeyWords)
+            {
+
+            }
         }
-        private void fillThirdField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
-            panel_shortBookDescr3.Visible = true;
+        private void fillThirdField(bool homepage, bool thisIsEmpty, bool byKeyWords, LibraryHomePageForm form) {
+            form.panel_shortBookDescr3.Visible = true;
             if (homepage)
             {
                 field3_book_id = 1; field3_book_type_id = 3;
@@ -328,7 +351,7 @@ namespace library_interface_ver2
 
                 execGetGenreQuery(field3_table, field3_book_type_id, field3_book_id, 3, field3_genre_type);
             }
-            else if (!thisIsEmpty) { 
+            else if (!thisIsEmpty && !byKeyWords) { 
                 field3_book_id = 3; field3_book_type_id = GETcurTypeID();
                 field3_table = GETcurTable(); field3_book_genre_id = GETcurGenreID();
 
@@ -519,7 +542,35 @@ namespace library_interface_ver2
                 else if (i==2) docN = (long)command.ExecuteScalar();
                 else if (i==3) profN = (long)command.ExecuteScalar();
             }
-            if (ficN >= 1 && scN >= 1 && docN >= 1 && profN >= 1) { }
+            if (ficN >= 1 && scN >= 1 && docN >= 1 && profN >= 1) {
+
+            }
+            else if (ficN == 1 || scN == 1 || docN == 1 || profN == 1) {
+                if (ficN == 1)
+                {
+                    field1_book_type_id = 1;
+                    field1_table = "fiction"; field1_genre_type = "GENRE_ID";
+                }
+                else if (scN == 1)
+                {
+                    field1_book_type_id = 2;
+                    field1_table = "scientic"; field1_genre_type = "SUB_AREA_ID";
+                }
+                else if (docN == 1)
+                {
+                    field1_book_type_id = 3;
+                    field1_table = "documentary"; field1_genre_type = "SUBJECT_ID";
+                }
+                else if (profN == 1)
+                {
+                    field1_book_type_id = 4;
+                    field1_table = "professional"; field1_genre_type = "DISCIPLINE_ID";
+                }
+
+                fillFirstField(false, false, searchByKeyWords, this); 
+                panel_shortBookDescr2.Visible = false;
+                panel_shortBookDescr3.Visible = false;
+            }
             else if (ficN < 1 && scN < 1 && docN < 1 && profN < 1) { showNoRes(this); }
 
             database.closeConenection();
@@ -551,19 +602,19 @@ namespace library_interface_ver2
             if (rowsAmount == 1) {
                 panel_shortBookDescr2.Visible = false;
                 panel_shortBookDescr3.Visible = false;
-                classObj.fillFirstField(false, false, this);
+                classObj.fillFirstField(false, false, searchByKeyWords, this);
                 closeNoRes(this);
             }
             else if (rowsAmount == 2) {
                 panel_shortBookDescr3.Visible = false;
-                classObj.fillFirstField(false, false, this);
-                classObj.fillSecondField(false, false, this);
+                classObj.fillFirstField(false, false, searchByKeyWords, this);
+                classObj.fillSecondField(false, false, searchByKeyWords, this);
                 closeNoRes(this);
             }
             else if (rowsAmount >= 3) {                
-                classObj.fillFirstField(false, false, this);
-                classObj.fillSecondField(false, false, this);
-                classObj.fillThirdField(false, false, this);
+                classObj.fillFirstField(false, false, searchByKeyWords, this);
+                classObj.fillSecondField(false, false, searchByKeyWords, this);
+                classObj.fillThirdField(false, false, searchByKeyWords, this);
                 closeNoRes(this);
             }
             if (rowsAmount < 1) { showNoRes(this); }
