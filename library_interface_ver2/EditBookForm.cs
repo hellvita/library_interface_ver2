@@ -20,7 +20,8 @@ namespace library_interface_ver2
 
         private void EditBookForm_Load(object sender, EventArgs e)
         {
-
+            label_position.Text = LibrarianHomePageForm.positionName;
+            label_fullname.Text = LibrarianHomePageForm.fullName;
         }
 
         private void button_back_Click(object sender, EventArgs e)
@@ -35,6 +36,26 @@ namespace library_interface_ver2
                 homepage_form.Focus();
             }
             Close();
+        }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_edit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
