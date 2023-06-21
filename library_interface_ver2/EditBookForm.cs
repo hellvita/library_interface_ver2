@@ -15,6 +15,10 @@ namespace library_interface_ver2
     {
         DataBase database = new DataBase();
         private LibrarianHomePageForm homepage_form;
+        private string curBookType, curBookName, curBookAuthor, curBookYear, curBookGenre;
+        private string curBookCover, curBookElCopy, curBookAmount, curBookDescr, curBookLanguage;
+        private bool typeFielsIsEmpty, nameIsEmpty, AythorIsEmpty, yearIsEmpty, genreIsEmpty;
+        private bool coverIsEmpty, elcopyIsEmpty, amountIsEmpty, dscrIsEmpty, laguageIsEmpty;
         public EditBookForm()
         {
             InitializeComponent();
@@ -326,6 +330,15 @@ namespace library_interface_ver2
             textBox_year.Text = "";
             textBox_electronCopy.Text = "";
             textBox_description.Text = "";
+        }
+
+        private void checkFiels() { 
+
+        }
+
+        private void checkbookTypes()
+        {
+
         }
     }
 }
