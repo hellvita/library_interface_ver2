@@ -36,6 +36,7 @@ namespace library_interface_ver2
             this.textBox_emloee_login = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label_error_msg = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -44,13 +45,14 @@ namespace library_interface_ver2
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.Controls.Add(this.label_error_msg);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(726, 319);
+            this.panel1.Size = new System.Drawing.Size(726, 344);
             this.panel1.TabIndex = 0;
             // 
             // groupBox2
@@ -94,12 +96,13 @@ namespace library_interface_ver2
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(294, 246);
+            this.button1.Location = new System.Drawing.Point(292, 274);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 58);
             this.button1.TabIndex = 1;
             this.button1.Text = "ВХІД";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -114,13 +117,25 @@ namespace library_interface_ver2
             this.label1.TabIndex = 0;
             this.label1.Text = "Вітаю в системі бібліотеки Hisentia!";
             // 
+            // label_error_msg
+            // 
+            this.label_error_msg.AutoSize = true;
+            this.label_error_msg.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_error_msg.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label_error_msg.Location = new System.Drawing.Point(198, 226);
+            this.label_error_msg.Name = "label_error_msg";
+            this.label_error_msg.Size = new System.Drawing.Size(320, 27);
+            this.label_error_msg.TabIndex = 9;
+            this.label_error_msg.Text = "Ой, невірний логін або пароль!";
+            this.label_error_msg.Visible = false;
+            // 
             // EmploeeAuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(750, 343);
+            this.ClientSize = new System.Drawing.Size(750, 368);
             this.Controls.Add(this.panel1);
             this.Name = "EmploeeAuthForm";
             this.Text = "Вхід в систему";
@@ -144,5 +159,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.TextBox textBox_emloee_login;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox_emloee_pwd;
+        private System.Windows.Forms.Label label_error_msg;
     }
 }

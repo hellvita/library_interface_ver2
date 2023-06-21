@@ -43,3 +43,4 @@ E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.BookingForm.resources
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.UserAccountForm.resources
 E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.AccDeleteConfirmForm.resources
+E:\нау\с6\практика\library_interface_ver2\library_interface_ver2\obj\Debug\net5.0-windows\library_interface_ver2.LibrarianHomePageForm.resources

@@ -7,24 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
-    public partial class EmploeeAuthForm : Form
+    public partial class LibrarianHomePageForm : Form
     {
-                DataBase database = new DataBase();
-        public EmploeeAuthForm()
+        public LibrarianHomePageForm()
         {
             InitializeComponent();
         }
 
-        private void EmploeeAuthForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void LibrarianHomePageForm_Load(object sender, EventArgs e)
         {
 
         }
