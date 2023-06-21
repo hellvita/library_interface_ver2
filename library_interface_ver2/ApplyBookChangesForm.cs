@@ -38,15 +38,17 @@ namespace library_interface_ver2
 
 
             string table = "";
-            if (typeID.Equals("1") && EditBookForm.typeNum == 1) { table = "fiction"; }
-            else if (typeID.Equals("2") && EditBookForm.typeNum == 2) { table = "scientic"; }
-            else if (typeID.Equals("3") && EditBookForm.typeNum == 3) { table = "documentary"; }
-            else if (typeID.Equals("4") && EditBookForm.typeNum == 4) { table = "professional"; }
+            string genreName = "";
+            string genreIDName = "";
+            string genreTable = "";
+            if (typeID.Equals("1") && EditBookForm.typeNum == 1) { table = "fiction"; genreIDName = "GENRE_ID"; genreTable = "genres"; genreName = "GENRE"; }
+            else if (typeID.Equals("2") && EditBookForm.typeNum == 2) { table = "scientic"; genreIDName = "SUB_AREA_ID"; genreTable = "subject_areas"; genreName = "SUB_AREA"; }
+            else if (typeID.Equals("3") && EditBookForm.typeNum == 3) { table = "documentary"; genreIDName = "SUBJECT_ID"; genreTable = "books_subjects"; genreName = "BOOK_SUBJECT"; }
+            else if (typeID.Equals("4") && EditBookForm.typeNum == 4) { table = "professional"; genreIDName = "DISCIPLINE_ID"; genreTable = "disciplines"; genreName = "DISCIPLINE"; }
             else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); dataIsOK = false; }
 
             if (dataIsOK) {
                 if (!EditBookForm.nameIsEmpty) {
-
                     MySqlDataAdapter adapter1 = new MySqlDataAdapter();
                     DataTable table1 = new DataTable();
 
@@ -67,18 +69,175 @@ namespace library_interface_ver2
                     }
                     else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
                 }
-                if (!EditBookForm.authorIsEmpty) { }
-                if (!EditBookForm.yearIsEmpty) { }
-                if (!EditBookForm.genreIsEmpty) { }
-                if (!EditBookForm.coverIsEmpty) { }
-                if (!EditBookForm.elcopyIsEmpty) { }
-                if (!EditBookForm.elcopyIsEmpty) { }
-                if (!EditBookForm.amountIsEmpty) { }
-                if (!EditBookForm.dscrIsEmpty) { }
-                if (!EditBookForm.laguageIsEmpty) { }
+                if (!EditBookForm.authorIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET AUTHOR = '{EditBookForm.curBookAuthor}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити автора книги!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.yearIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET PUBLICATION_YEAR = '{EditBookForm.curBookYear}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити рік публікації!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.genreIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET {genreIDName} = (SELECT {genreIDName} FROM {genreTable} WHERE {genreName} = '{EditBookForm.curBookGenre}') WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити жанр/тематику!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.coverIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET COVER = '{EditBookForm.curBookCover}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити обкладинку!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.elcopyIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET ELECTRONIC_COPY = '{EditBookForm.curBookElCopy}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити посилання на електронну копію!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.amountIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET AMOUNT = '{EditBookForm.curBookAmount}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити поточну кількість примірників!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.dscrIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET BOOK_DESCRIPTION = '{EditBookForm.curBookDescr}' WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити опис!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
+                if (!EditBookForm.laguageIsEmpty) {
+                    MySqlDataAdapter adapter1 = new MySqlDataAdapter();
+                    DataTable table1 = new DataTable();
+
+                    string query_selectBook = $"SELECT * FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID}";
+                    MySqlCommand command1 = new MySqlCommand(query_selectBook, database.GetConnection());
+
+                    adapter1.SelectCommand = command1;
+                    adapter1.Fill(table1);
+                    if (table1.Rows.Count == 1)
+                    {
+                        string query_deleteBook = $"UPDATE {table} SET LANGUAGE_ID = (SELECT LANGUAGE_ID FROM writing_languages WHERE BOOK_LANGUAGE = '{EditBookForm.curBookLanguage}') WHERE BOOK_TYPE_ID = {typeID} and BOOK_ID = {bookID}";
+                        MySqlCommand command2 = new MySqlCommand(query_deleteBook, database.GetConnection());
+
+                        if (command2.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Не вдалося змінити мову видання!", "Помилка!");
+                        }
+                    }
+                    else { MessageBox.Show("Сталася помилка!\nПеревірте правильність введених даних", "Помилка!"); }
+                }
             }
-
-
             database.closeConenection();
             Close();
         }
