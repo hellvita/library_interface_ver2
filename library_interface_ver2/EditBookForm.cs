@@ -23,6 +23,7 @@ namespace library_interface_ver2
 
         private void EditBookForm_Load(object sender, EventArgs e)
         {
+            setFielLimitation();
             label_position.Text = LibrarianHomePageForm.positionName;
             label_fullname.Text = LibrarianHomePageForm.fullName;
             FillBookTypesList();
@@ -31,6 +32,15 @@ namespace library_interface_ver2
             FillBooksSubjectTypeList();
             FillDisciplineTypeList();
             FillLanguageList();
+        }
+        private void setFielLimitation() {
+            textBox_bookName.MaxLength = 100;
+            textBox_amount.MaxLength = 3;
+            textBox_author.MaxLength = 30;
+            textBox_year.MaxLength = 4;
+            textBox_cover.MaxLength = 255;
+            textBox_electronCopy.MaxLength = 255;
+            textBox_description.MaxLength = 16777215;
         }
         private void ComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
