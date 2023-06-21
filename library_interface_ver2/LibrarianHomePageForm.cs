@@ -13,6 +13,8 @@ namespace library_interface_ver2
     public partial class LibrarianHomePageForm : Form
     {
         private EmploeeAuthForm login_form;
+        private UserSinginForm userSingin_form;
+        public static bool registerByLibrarian = false;
         public LibrarianHomePageForm()
         {
             InitializeComponent();
@@ -35,6 +37,20 @@ namespace library_interface_ver2
                 login_form.Focus();
             }
             Close();
+        }
+
+        private void button_addUser_Click(object sender, EventArgs e)
+        {
+            registerByLibrarian = true;
+            if (userSingin_form == null || userSingin_form.IsDisposed)
+            {
+                userSingin_form = new UserSinginForm();
+                userSingin_form.Show();
+            }
+            else
+            {
+                userSingin_form.Focus();
+            }
         }
     }
 }

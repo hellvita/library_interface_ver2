@@ -23,7 +23,7 @@ namespace library_interface_ver2
         }
 
         private void UserLoginForm_Load(object sender, EventArgs e)
-        {
+        {            
             textBox_user_pwd.PasswordChar = '☺';
             textBox_user_pwd.MaxLength = 20;
             textBox_user_login.MaxLength = 5;

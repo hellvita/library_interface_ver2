@@ -19,6 +19,7 @@ namespace library_interface_ver2
         public UserSinginForm()
         {
             InitializeComponent();
+            FormClosing += UserSinginForm_Closing;
         }
 
         private void button_back_Click(object sender, EventArgs e)
@@ -28,11 +29,17 @@ namespace library_interface_ver2
 
         private void UserSinginForm_Load(object sender, EventArgs e)
         {
+            button_back.Visible = true;
+            if (LibrarianHomePageForm.registerByLibrarian) { button_back.Visible = false; }
             textBox_user_pwd.PasswordChar = '☺';
             textBox_user_pwd.MaxLength = 20;
             textBox_user_fname.MaxLength = 100;
             textBox_user_phone.MaxLength = 18;
             textBox_user_email.MaxLength = 100;
+        }
+
+        private void UserSinginForm_Closing(object sender, EventArgs e) {
+            LibrarianHomePageForm.registerByLibrarian = false;
         }
 
         // singin button
@@ -166,6 +173,7 @@ namespace library_interface_ver2
         }
 
         private void CloseThisForm() {
+
             if (home_form == null || home_form.IsDisposed)
             {
                 home_form = new UserLogSinginForm();
