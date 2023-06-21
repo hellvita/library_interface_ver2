@@ -31,11 +31,11 @@ namespace library_interface_ver2
         {
             this.panel_mainBcg = new System.Windows.Forms.Panel();
             this.panel_header = new System.Windows.Forms.Panel();
+            this.button_exit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label_position = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button_exit = new System.Windows.Forms.Button();
             this.panel_mainBcg.SuspendLayout();
             this.panel_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,11 +62,22 @@ namespace library_interface_ver2
             this.panel_header.Size = new System.Drawing.Size(1129, 110);
             this.panel_header.TabIndex = 0;
             // 
+            // button_exit
+            // 
+            this.button_exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_exit.Location = new System.Drawing.Point(1030, 33);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(63, 48);
+            this.button_exit.TabIndex = 6;
+            this.button_exit.Text = "🚪";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(417, 56);
+            this.label2.Location = new System.Drawing.Point(417, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(384, 35);
             this.label2.TabIndex = 4;
@@ -102,16 +113,6 @@ namespace library_interface_ver2
             this.label1.Size = new System.Drawing.Size(222, 88);
             this.label1.TabIndex = 1;
             this.label1.Text = "Hisentia";
-            // 
-            // button_exit
-            // 
-            this.button_exit.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_exit.Location = new System.Drawing.Point(1030, 33);
-            this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(63, 48);
-            this.button_exit.TabIndex = 6;
-            this.button_exit.Text = "🚪";
-            this.button_exit.UseVisualStyleBackColor = true;
             // 
             // LibrarianHomePageForm
             // 

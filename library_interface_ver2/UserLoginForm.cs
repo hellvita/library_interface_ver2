@@ -46,6 +46,7 @@ namespace library_interface_ver2
         // login button
         private void button1_Click(object sender, EventArgs e)
         {
+            database.openConenection();
             var userLogin = textBox_user_login.Text;
             var userPwd = md5.hashPwd(textBox_user_pwd.Text);
             ulog = userLogin;
@@ -77,6 +78,12 @@ namespace library_interface_ver2
                     }
                     Close();
                 }
+                else
+                {
+                    // login fail
+                    label_error_msg.Visible = Visible;
+                }
+                database.closeConenection();
             }           
             else {
                 // login fail
