@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
     public partial class EditBookForm : Form
     {
+        DataBase database = new DataBase();
         private LibrarianHomePageForm homepage_form;
         public EditBookForm()
         {
@@ -40,7 +42,21 @@ namespace library_interface_ver2
 
         private void button_search_Click(object sender, EventArgs e)
         {
+            database.openConenection();
 
+            
+            DataTable table = new DataTable();
+
+            //string query_str = "SELECT * FROM fiction";
+            string query_str = "SELECT BOOK_NAME, AUTHOR, (SELECT GENRE FROM genres WHERE GENRE_ID = fiction.GENRE_ID) AS GENERE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction";
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+
+            adapter.Fill(table);
+
+            dataGV_books.DataSource = table;
+
+
+            database.closeConenection();
         }
 
         private void button_edit_Click(object sender, EventArgs e)
