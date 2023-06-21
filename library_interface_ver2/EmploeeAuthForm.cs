@@ -15,7 +15,9 @@ namespace library_interface_ver2
     {
         DataBase database = new DataBase();
         private LibrarianHomePageForm homepage_form;
-        public static int librarianID = 1;
+        public static int emploeeID = 1;
+        public static int positionID = 1;
+        public static int positionNameID = 1;
         public EmploeeAuthForm()
         {
             InitializeComponent();
@@ -52,6 +54,7 @@ namespace library_interface_ver2
 
                 if (table.Rows.Count == 1)
                 {
+                    setEmplNameAndPos(emplLogin);
                     // login success
                     if (homepage_form == null || homepage_form.IsDisposed)
                     {
@@ -76,6 +79,24 @@ namespace library_interface_ver2
                 // login fail
                 label_error_msg.Visible = Visible;
             }
+        }
+
+        private void setEmplNameAndPos(string login) {
+            string query_str;
+            MySqlCommand command;
+
+            query_str = $"SELECT EMPLOYEE_ID FROM login_attributes WHERE EMPLOYEE_LOGIN = '{login}'";
+            command = new MySqlCommand(query_str, database.GetConnection());
+            emploeeID = (int)command.ExecuteScalar();
+
+            query_str = $"SELECT POSITION_ID FROM all_employees WHERE EMPLOYEE_ID = {emploeeID}";
+            command = new MySqlCommand(query_str, database.GetConnection());
+            positionID = (int)command.ExecuteScalar();
+
+            query_str = $"SELECT POSITION_NAME_ID FROM positions WHERE POSITION_ID = '{positionID}';";
+            command = new MySqlCommand(query_str, database.GetConnection());
+            positionNameID = (int)command.ExecuteScalar();
+
         }
     }
 }

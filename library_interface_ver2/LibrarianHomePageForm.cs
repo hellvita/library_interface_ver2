@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace library_interface_ver2
 {
     public partial class LibrarianHomePageForm : Form
     {
+        DataBase database = new DataBase();
         private EmploeeAuthForm login_form;
         private UserSinginForm userSingin_form;
+        private EditBookForm bookEdit_form;
         public static bool registerByLibrarian = false;
         public LibrarianHomePageForm()
         {
@@ -22,7 +25,40 @@ namespace library_interface_ver2
 
         private void LibrarianHomePageForm_Load(object sender, EventArgs e)
         {
+            setEmploeeInfo();
+        }
 
+        private void setEmploeeInfo() {
+            database.openConenection();
+
+            MySqlCommand command;
+            object obj;
+            string query_str;
+            string position;
+            string fullname;
+            string table = "";
+            int posID = EmploeeAuthForm.positionID;
+            int empID = EmploeeAuthForm.emploeeID;
+            int posNameID = EmploeeAuthForm.positionNameID;
+
+            if (posID == 1 || posID == 2 || posID == 3) { table = "library_staff"; }
+            else if (posID == 4 || posID == 5) { table = "administrators"; }
+            else if (posID == 6 || posID == 7) { table = "managers"; }
+
+            query_str = $"SELECT POSITION_NAME FROM job_titles WHERE POSITION_NAME_ID = {posNameID}";
+            command = new MySqlCommand(query_str, database.GetConnection());
+            obj = command.ExecuteScalar();
+            position = obj.ToString();
+
+            query_str = $"SELECT FULL_NAME FROM {table} WHERE EMPLOYEE_ID = {empID} AND POSITION_ID = {posID}";
+            command = new MySqlCommand(query_str, database.GetConnection());
+            obj = command.ExecuteScalar();
+            fullname = obj.ToString();
+
+            label_position.Text = $"{position}:";
+            label_fname.Text = $"{fullname}";
+
+            database.closeConenection();
         }
 
         private void button_exit_Click(object sender, EventArgs e)
@@ -51,6 +87,20 @@ namespace library_interface_ver2
             {
                 userSingin_form.Focus();
             }
+        }
+
+        private void button_bookEdit_Click(object sender, EventArgs e)
+        {
+            if (bookEdit_form == null || bookEdit_form.IsDisposed)
+            {
+                bookEdit_form = new EditBookForm();
+                bookEdit_form.Show();
+            }
+            else
+            {
+                bookEdit_form.Focus();
+            }
+            Close();
         }
     }
 }
