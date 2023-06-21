@@ -28,6 +28,7 @@ namespace library_interface_ver2
         private int curGenreID;
         private int curTypeID;
         private LibraryHomePageForm classObj;
+        private bool noBooks = true;
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace library_interface_ver2
         }
 
         private void LibraryHomePageForm_Load(object sender, EventArgs e)
-        {            
+        {
             FillBookTypesList();
             FillGenreTypeList();
             FillSubjectAreaTypeList();
@@ -44,7 +45,6 @@ namespace library_interface_ver2
             FillDisciplineTypeList();
             FillLanguageList();
             setStartHomePageView();
-
         }
 
         private void FillBookTypesList() {
@@ -191,66 +191,66 @@ namespace library_interface_ver2
         private void fillBooksPreviewOf(int field_amount) {
             
             switch (field_amount) {
-                case 1: { fillFirstField(true, false); } break;
-                case 2: { fillFirstField(true, false); fillSecondField(true, false); } break;
-                case 3: { fillFirstField(true, false); fillSecondField(true, false); fillThirdField(true, false); } break;
+                case 1: { fillFirstField(true, false, this); } break;
+                case 2: { fillFirstField(true, false, this); fillSecondField(true, false, this); } break;
+                case 3: { fillFirstField(true, false, this); fillSecondField(true, false, this); fillThirdField(true, false, this); } break;
             }
           
         }
 
-        private void execCoverQuery(string table, int typeID, int bookID, int field) {
+        private void execCoverQuery(string table, int typeID, int bookID, int field, LibraryHomePageForm form) {
             database.openConenection();
             string query_getCover = $"SELECT COVER FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
             MySqlCommand subcommand = new MySqlCommand(query_getCover, database.GetConnection());
             object obj = subcommand.ExecuteScalar();
             string coverPath = obj.ToString();
-            if(field == 1 ) pictureBox_bookCover1.Image = Image.FromFile($"{coverPath}");
-            else if(field == 2 ) pictureBox_bookCover2.Image = Image.FromFile($"{coverPath}");
-            else if(field == 3 ) pictureBox_bookCover3.Image = Image.FromFile($"{coverPath}");
+            if(field == 1 ) form.pictureBox_bookCover1.Image = Image.FromFile($"{coverPath}");
+            else if(field == 2 ) form.pictureBox_bookCover2.Image = Image.FromFile($"{coverPath}");
+            else if(field == 3 ) form.pictureBox_bookCover3.Image = Image.FromFile($"{coverPath}");
             database.closeConenection();
         }
-        private void execBookNameQuery(string table, int typeID, int bookID, int field) {
+        private void execBookNameQuery(string table, int typeID, int bookID, int field, LibraryHomePageForm form) {
             database.openConenection();
             string query_getName = $"SELECT BOOK_NAME FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
             MySqlCommand subcommand = new MySqlCommand(query_getName, database.GetConnection());
             object obj = subcommand.ExecuteScalar();
             string nameStr = getNsymb(obj.ToString(), 15, 1);
-            if (field == 1) linkLabel_bookName1.Text = $"{nameStr}";
-            else if (field == 2) linkLabel_bookName2.Text = $"{nameStr}";
-            else if (field == 3) linkLabel_bookName3.Text = $"{nameStr}";
+            if (field == 1) form.linkLabel_bookName1.Text = $"{nameStr}";
+            else if (field == 2) form.linkLabel_bookName2.Text = $"{nameStr}";
+            else if (field == 3) form.linkLabel_bookName3.Text = $"{nameStr}";
             database.closeConenection();
         }
-        private void execAuthorQuery(string table, int typeID, int bookID, int field) {
+        private void execAuthorQuery(string table, int typeID, int bookID, int field, LibraryHomePageForm form) {
             database.openConenection();
             string query_getAuthor = $"SELECT AUTHOR FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
             MySqlCommand subcommand = new MySqlCommand(query_getAuthor, database.GetConnection());
             object obj = subcommand.ExecuteScalar();
             string autthorStr = obj.ToString();
-            if (field == 1) label_author1.Text = $"{autthorStr}";
-            else if (field == 2) label_author2.Text = $"{autthorStr}";
-            else if (field == 3) label_author3.Text = $"{autthorStr}";
+            if (field == 1) form.label_author1.Text = $"{autthorStr}";
+            else if (field == 2) form.label_author2.Text = $"{autthorStr}";
+            else if (field == 3) form.label_author3.Text = $"{autthorStr}";
             database.closeConenection();
         }
-        private void execYearQuery(string table, int typeID, int bookID, int field) {
+        private void execYearQuery(string table, int typeID, int bookID, int field, LibraryHomePageForm form) {
             database.openConenection();
             string query_getYear = $"SELECT PUBLICATION_YEAR FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
             MySqlCommand subcommand = new MySqlCommand(query_getYear, database.GetConnection());
             object obj = subcommand.ExecuteScalar();
             string yearStr = obj.ToString();
-            if (field == 1) label_bookYear1.Text = $"{yearStr}";
-            else if (field == 2) label_bookYear2.Text = $"{yearStr}";
-            else if (field == 3) label_bookYear3.Text = $"{yearStr}";
+            if (field == 1) form.label_bookYear1.Text = $"{yearStr}";
+            else if (field == 2) form.label_bookYear2.Text = $"{yearStr}";
+            else if (field == 3) form.label_bookYear3.Text = $"{yearStr}";
             database.closeConenection();
         }
-        private void execDescrQuery(string table, int typeID, int bookID, int field) {
+        private void execDescrQuery(string table, int typeID, int bookID, int field, LibraryHomePageForm form) {
             database.openConenection();
             string query_getDescription = $"SELECT BOOK_DESCRIPTION FROM {table} WHERE BOOK_TYPE_ID = {typeID} AND BOOK_ID = {bookID};";
             MySqlCommand subcommand = new MySqlCommand(query_getDescription, database.GetConnection());
             object obj = subcommand.ExecuteScalar();
             string descriptionStr = getNsymb(obj.ToString(), 360, 2);
-            if (field == 1) label_description1.Text = $"{descriptionStr}";
-            else if(field == 2) label_description2.Text = $"{descriptionStr}";
-            else if(field == 3) label_description3.Text = $"{descriptionStr}";
+            if (field == 1) form.label_description1.Text = $"{descriptionStr}";
+            else if(field == 2) form.label_description2.Text = $"{descriptionStr}";
+            else if(field == 3) form.label_description3.Text = $"{descriptionStr}";
             database.closeConenection();
         }
         private void execGetGenreQuery(string table, int typeID, int bookID, int field, string genreType) {
@@ -262,84 +262,83 @@ namespace library_interface_ver2
             else if(field == 3) field3_book_genre_id = (int)subcommand.ExecuteScalar();
             database.closeConenection();
         }
-        private void fillFirstField(bool homepage, bool thisIsEmpty) {
+        private void fillFirstField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
+            panel_shortBookDescr1.Visible = true;
             if (homepage)
             {
                 field1_book_id = 1; field1_book_type_id = 1;
                 field1_table = "fiction"; field1_genre_type = "GENRE_ID";
 
-                execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1);
+                execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
 
                 execGetGenreQuery(field1_table, field1_book_type_id, field1_book_id, 1, field1_genre_type);
             }
-            else if (thisIsEmpty) { panel_shortBookDescr1.Visible = false; }
-            else {
+            else if (!thisIsEmpty) { 
                 field1_book_id = 1; field1_book_type_id = GETcurTypeID(); // classObj returns 0/null
                 field1_table = GETcurTable(); field1_book_genre_id = GETcurGenreID();
 
-                execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1);
-                execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1);
+                execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execAuthorQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execYearQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
+                execDescrQuery(field1_table, field1_book_type_id, field1_book_id, 1, form);
             }            
         }
-        private void fillSecondField(bool homepage, bool thisIsEmpty) {
+        private void fillSecondField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
+            panel_shortBookDescr2.Visible = true;
             if (homepage)
             {
                 field2_book_id = 1; field2_book_type_id = 2;
                 field2_table = "scientic"; field2_genre_type = "SUB_AREA_ID";
 
-                execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execAuthorQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2);
+                execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execAuthorQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
 
                 execGetGenreQuery(field2_table, field2_book_type_id, field2_book_id, 2, field2_genre_type);
             }
-            else if (thisIsEmpty) { panel_shortBookDescr2.Visible = false; }
-            else
+            else if (!thisIsEmpty)
             {
                 field2_book_id = 2; field2_book_type_id = GETcurTypeID();
                 field2_table = GETcurTable(); field2_book_genre_id = GETcurGenreID();
 
-                execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execAuthorQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2);
-                execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2);
+                execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execAuthorQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
             }
         }
-        private void fillThirdField(bool homepage, bool thisIsEmpty) {
+        private void fillThirdField(bool homepage, bool thisIsEmpty, LibraryHomePageForm form) {
+            panel_shortBookDescr3.Visible = true;
             if (homepage)
             {
                 field3_book_id = 1; field3_book_type_id = 3;
                 field3_table = "documentary"; field3_genre_type = "SUBJECT_ID";
 
-                execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execAuthorQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execYearQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execDescrQuery(field3_table, field3_book_type_id, field3_book_id, 3);
+                execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execAuthorQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execYearQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execDescrQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
 
                 execGetGenreQuery(field3_table, field3_book_type_id, field3_book_id, 3, field3_genre_type);
             }
-            else if (thisIsEmpty) { panel_shortBookDescr3.Visible = false; }
-            else
-            {
+            else if (!thisIsEmpty) { 
                 field3_book_id = 3; field3_book_type_id = GETcurTypeID();
                 field3_table = GETcurTable(); field3_book_genre_id = GETcurGenreID();
 
-                execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execAuthorQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execYearQuery(field3_table, field3_book_type_id, field3_book_id, 3);
-                execDescrQuery(field3_table, field3_book_type_id, field3_book_id, 3);
+                execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execAuthorQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execYearQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execDescrQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
             }
         }
 
@@ -478,8 +477,15 @@ namespace library_interface_ver2
         private void button_search_Click(object sender, EventArgs e)
         {
             setSearchingValues();
-            bookSearching();            
-            showNoRes();
+            bookSearching();
+            if (noBooks) showNoRes();
+
+            /*
+            classObj = new LibraryHomePageForm();
+            classObj.setSearchingValues();
+            classObj.bookSearching();            
+            if (noBooks) classObj.showNoRes();
+            */
         }
 
         private void setSearchingValues() {
@@ -496,8 +502,47 @@ namespace library_interface_ver2
             panel_mainBooksOverview.Visible = false;
             panel_noresults.Visible = true;
         }
+        /*
+        private void bookSearching()
+        {
+
+            if (comboBox_bookTypes.SelectedIndex == 0) { SETcurTable("fiction"); SETcurGenreID(getCurGenreID(0)); SETcurTypeID(1); }
+            else if (comboBox_bookTypes.SelectedIndex == 1) { SETcurTable("scientic"); SETcurGenreID(getCurGenreID(1)); SETcurTypeID(2); }
+            else if (comboBox_bookTypes.SelectedIndex == 2) { SETcurTable("documentary"); SETcurGenreID(getCurGenreID(2)); SETcurTypeID(3); }
+            else if (comboBox_bookTypes.SelectedIndex == 3) { SETcurTable("professional"); SETcurGenreID(getCurGenreID(3)); SETcurTypeID(4); }
+
+            database.openConenection();
+
+            string query_str = $"SELECT COUNT(*) FROM {classObj.curTable}";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var rowsAmount = (long)command.ExecuteScalar();
+            string subquery_str;
+            if (rowsAmount == 1)
+            {
+                panel_shortBookDescr2.Visible = false;
+                panel_shortBookDescr3.Visible = false;
+                fillFirstField(false, false);
+            }
+            else if (rowsAmount == 2)
+            {
+                panel_shortBookDescr3.Visible = false;
+                fillFirstField(false, false);
+                fillSecondField(false, false);
+            }
+            else if (rowsAmount >= 3)
+            {
+                fillFirstField(false, false);
+                fillSecondField(false, false);
+                fillThirdField(false, false);
+            }
+            if (rowsAmount >= 1) { noBooks = false; }
+            database.closeConenection();
+        }
+        */
 
 
+        
         private void bookSearching() {
             classObj = new LibraryHomePageForm();
 
@@ -512,26 +557,26 @@ namespace library_interface_ver2
 
             MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
             var rowsAmount = (long)command.ExecuteScalar();
-            string subquery_str;
+            string subquery_str;           
             if (rowsAmount == 1) {
-                classObj.fillFirstField(false, false);
-                classObj.fillSecondField(false, true);
-                classObj.fillThirdField(false, true);
+                panel_shortBookDescr2.Visible = false;
+                panel_shortBookDescr3.Visible = false;
+                classObj.fillFirstField(false, false, this);
             }
             else if (rowsAmount == 2) {
-                classObj.fillFirstField(false, false);
-                classObj.fillSecondField(false, false);
-                classObj.fillThirdField(false, true);
+                panel_shortBookDescr3.Visible = false;
+                classObj.fillFirstField(false, false, this);
+                classObj.fillSecondField(false, false, this);
             }
-            else if (rowsAmount >= 3) {
-                classObj.fillFirstField(false, false);
-                classObj.fillSecondField(false, false);
-                classObj.fillThirdField(false, false);
+            else if (rowsAmount >= 3) {                
+                classObj.fillFirstField(false, false, this);
+                classObj.fillSecondField(false, false, this);
+                classObj.fillThirdField(false, false, this);
             }
-
+            if (rowsAmount >= 1) { noBooks = false; }
             database.closeConenection();
         }
-
+        
         private int getCurGenreID(int type) {
             database.openConenection();
             int genreID = 1;
@@ -547,19 +592,19 @@ namespace library_interface_ver2
                         genreID = (int)command.ExecuteScalar();
                     } break;
                 case 1: {
-                        curGenreName = comboBox_books_subjects.Text;
+                        curGenreName = comboBox_subject_areas.Text;
                         query_str = $"SELECT SUB_AREA_ID FROM subject_areas WHERE SUB_AREA = '{curGenreName}'";
                         command = new MySqlCommand(query_str, database.GetConnection());
                         genreID = (int)command.ExecuteScalar();
                     } break;
                 case 2: {
-                        curGenreName = comboBox_subject_areas.Text;
+                        curGenreName = comboBox_books_subjects.Text;
                         query_str = $"SELECT SUBJECT_ID FROM books_subjects WHERE BOOK_SUBJECT = '{curGenreName}'";
                         command = new MySqlCommand(query_str, database.GetConnection());
                         genreID = (int)command.ExecuteScalar();
                     } break;
                 case 3: {
-                        curGenreName = comboBox_bookGenres.Text;
+                        curGenreName = comboBox_disciplines.Text;
                         query_str = $"SELECT DISCIPLINE_ID FROM disciplines WHERE DISCIPLINE = '{curGenreName}'";
                         command = new MySqlCommand(query_str, database.GetConnection());
                         genreID = (int)command.ExecuteScalar();
