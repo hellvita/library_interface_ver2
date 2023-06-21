@@ -28,7 +28,6 @@ namespace library_interface_ver2
         private int curGenreID;
         private int curTypeID;
         private LibraryHomePageForm classObj;
-        private bool noBooks = true;
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -478,14 +477,6 @@ namespace library_interface_ver2
         {
             setSearchingValues();
             bookSearching();
-            if (noBooks) showNoRes();
-
-            /*
-            classObj = new LibraryHomePageForm();
-            classObj.setSearchingValues();
-            classObj.bookSearching();            
-            if (noBooks) classObj.showNoRes();
-            */
         }
 
         private void setSearchingValues() {
@@ -497,63 +488,29 @@ namespace library_interface_ver2
             textBox_search.Text = $"{comboBox_bookTypes.Text}, {genreText}, {comboBox_language.Text}";
         }
 
-        private void showNoRes() {
+        private void showNoRes(LibraryHomePageForm form) {
 
-            panel_mainBooksOverview.Visible = false;
-            panel_noresults.Visible = true;
+            form.panel_mainBooksOverview.Visible = false;
+            form.panel_noresults.Visible = true;
         }
-        /*
-        private void bookSearching()
-        {
 
-            if (comboBox_bookTypes.SelectedIndex == 0) { SETcurTable("fiction"); SETcurGenreID(getCurGenreID(0)); SETcurTypeID(1); }
-            else if (comboBox_bookTypes.SelectedIndex == 1) { SETcurTable("scientic"); SETcurGenreID(getCurGenreID(1)); SETcurTypeID(2); }
-            else if (comboBox_bookTypes.SelectedIndex == 2) { SETcurTable("documentary"); SETcurGenreID(getCurGenreID(2)); SETcurTypeID(3); }
-            else if (comboBox_bookTypes.SelectedIndex == 3) { SETcurTable("professional"); SETcurGenreID(getCurGenreID(3)); SETcurTypeID(4); }
-
-            database.openConenection();
-
-            string query_str = $"SELECT COUNT(*) FROM {classObj.curTable}";
-
-            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
-            var rowsAmount = (long)command.ExecuteScalar();
-            string subquery_str;
-            if (rowsAmount == 1)
-            {
-                panel_shortBookDescr2.Visible = false;
-                panel_shortBookDescr3.Visible = false;
-                fillFirstField(false, false);
-            }
-            else if (rowsAmount == 2)
-            {
-                panel_shortBookDescr3.Visible = false;
-                fillFirstField(false, false);
-                fillSecondField(false, false);
-            }
-            else if (rowsAmount >= 3)
-            {
-                fillFirstField(false, false);
-                fillSecondField(false, false);
-                fillThirdField(false, false);
-            }
-            if (rowsAmount >= 1) { noBooks = false; }
-            database.closeConenection();
+        private void closeNoRes(LibraryHomePageForm form) {
+            form.panel_mainBooksOverview.Visible = true;
+            form.panel_noresults.Visible = false;
         }
-        */
-
 
         
         private void bookSearching() {
             classObj = new LibraryHomePageForm();
 
-            if (comboBox_bookTypes.SelectedIndex == 0) { classObj.SETcurTable("fiction"); classObj.SETcurGenreID(getCurGenreID(0)); classObj.SETcurTypeID(1); }
-            else if (comboBox_bookTypes.SelectedIndex == 1) { classObj.SETcurTable("scientic"); classObj.SETcurGenreID(getCurGenreID(1)); classObj.SETcurTypeID(2); }
-            else if (comboBox_bookTypes.SelectedIndex == 2) { classObj.SETcurTable("documentary"); classObj.SETcurGenreID(getCurGenreID(2)); classObj.SETcurTypeID(3); }
-            else if (comboBox_bookTypes.SelectedIndex == 3) { classObj.SETcurTable("professional"); classObj.SETcurGenreID(getCurGenreID(3)); classObj.SETcurTypeID(4); }
-
+            string curGenreName = "";
+            if (comboBox_bookTypes.SelectedIndex == 0) { classObj.SETcurTable("fiction"); classObj.SETcurGenreID(getCurGenreID(0)); classObj.SETcurTypeID(1); curGenreName = "GENRE_ID"; }
+            else if (comboBox_bookTypes.SelectedIndex == 1) { classObj.SETcurTable("scientic"); classObj.SETcurGenreID(getCurGenreID(1)); classObj.SETcurTypeID(2); curGenreName = "SUB_AREA_ID"; }
+            else if (comboBox_bookTypes.SelectedIndex == 2) { classObj.SETcurTable("documentary"); classObj.SETcurGenreID(getCurGenreID(2)); classObj.SETcurTypeID(3); curGenreName = "SUBJECT_ID"; }
+            else if (comboBox_bookTypes.SelectedIndex == 3) { classObj.SETcurTable("professional"); classObj.SETcurGenreID(getCurGenreID(3)); classObj.SETcurTypeID(4); curGenreName = "DISCIPLINE_ID"; }
             database.openConenection();
 
-            string query_str = $"SELECT COUNT(*) FROM {classObj.curTable}";
+            string query_str = $"SELECT COUNT(*) FROM {classObj.curTable} WHERE {curGenreName} = {classObj.curGenreID}";
 
             MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
             var rowsAmount = (long)command.ExecuteScalar();
@@ -562,18 +519,21 @@ namespace library_interface_ver2
                 panel_shortBookDescr2.Visible = false;
                 panel_shortBookDescr3.Visible = false;
                 classObj.fillFirstField(false, false, this);
+                closeNoRes(this);
             }
             else if (rowsAmount == 2) {
                 panel_shortBookDescr3.Visible = false;
                 classObj.fillFirstField(false, false, this);
                 classObj.fillSecondField(false, false, this);
+                closeNoRes(this);
             }
             else if (rowsAmount >= 3) {                
                 classObj.fillFirstField(false, false, this);
                 classObj.fillSecondField(false, false, this);
                 classObj.fillThirdField(false, false, this);
+                closeNoRes(this);
             }
-            if (rowsAmount >= 1) { noBooks = false; }
+            if (rowsAmount < 1) { showNoRes(this); }
             database.closeConenection();
         }
         
