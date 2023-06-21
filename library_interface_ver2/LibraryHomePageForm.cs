@@ -27,6 +27,7 @@ namespace library_interface_ver2
         private string curTable;
         private int curGenreID;
         private int curTypeID;
+        private LibraryHomePageForm classObj;
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -262,7 +263,6 @@ namespace library_interface_ver2
             database.closeConenection();
         }
         private void fillFirstField(bool homepage, bool thisIsEmpty) {
-            LibraryHomePageForm classObj = new LibraryHomePageForm();
             if (homepage)
             {
                 field1_book_id = 1; field1_book_type_id = 1;
@@ -278,8 +278,8 @@ namespace library_interface_ver2
             }
             else if (thisIsEmpty) { panel_shortBookDescr1.Visible = false; }
             else {
-                field1_book_id = 1; field1_book_type_id = classObj.GETcurTypeID;
-                field1_table = classObj.GETcurTable; field1_book_genre_id = classObj.GETcurGenreID;
+                field1_book_id = 1; field1_book_type_id = GETcurTypeID(); // classObj returns 0/null
+                field1_table = GETcurTable(); field1_book_genre_id = GETcurGenreID();
 
                 execCoverQuery(field1_table, field1_book_type_id, field1_book_id, 1);
                 execBookNameQuery(field1_table, field1_book_type_id, field1_book_id, 1);
@@ -289,7 +289,6 @@ namespace library_interface_ver2
             }            
         }
         private void fillSecondField(bool homepage, bool thisIsEmpty) {
-            LibraryHomePageForm classObj = new LibraryHomePageForm();
             if (homepage)
             {
                 field2_book_id = 1; field2_book_type_id = 2;
@@ -306,8 +305,8 @@ namespace library_interface_ver2
             else if (thisIsEmpty) { panel_shortBookDescr2.Visible = false; }
             else
             {
-                field2_book_id = 2; field2_book_type_id = classObj.GETcurTypeID;
-                field2_table = classObj.GETcurTable; field2_book_genre_id = classObj.GETcurGenreID;
+                field2_book_id = 2; field2_book_type_id = GETcurTypeID();
+                field2_table = GETcurTable(); field2_book_genre_id = GETcurGenreID();
 
                 execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2);
                 execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2);
@@ -317,7 +316,6 @@ namespace library_interface_ver2
             }
         }
         private void fillThirdField(bool homepage, bool thisIsEmpty) {
-            LibraryHomePageForm classObj = new LibraryHomePageForm();
             if (homepage)
             {
                 field3_book_id = 1; field3_book_type_id = 3;
@@ -334,8 +332,8 @@ namespace library_interface_ver2
             else if (thisIsEmpty) { panel_shortBookDescr3.Visible = false; }
             else
             {
-                field3_book_id = 3; field3_book_type_id = classObj.GETcurTypeID;
-                field3_table = classObj.GETcurTable; field3_book_genre_id = classObj.GETcurGenreID;
+                field3_book_id = 3; field3_book_type_id = GETcurTypeID();
+                field3_table = GETcurTable(); field3_book_genre_id = GETcurGenreID();
 
                 execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3);
                 execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3);
@@ -501,33 +499,34 @@ namespace library_interface_ver2
 
 
         private void bookSearching() {
+            classObj = new LibraryHomePageForm();
 
-            if (comboBox_bookTypes.SelectedIndex == 0) { SETcurTable("fiction"); SETcurGenreID(getCurGenreID(0)); SETcurTypeID(1); }
-            else if (comboBox_bookTypes.SelectedIndex == 1) { SETcurTable("scientic"); SETcurGenreID(getCurGenreID(1)); SETcurTypeID(2); }
-            else if (comboBox_bookTypes.SelectedIndex == 2) { SETcurTable("documentary"); SETcurGenreID(getCurGenreID(2)); SETcurTypeID(3); }
-            else if (comboBox_bookTypes.SelectedIndex == 3) { SETcurTable("professional"); SETcurGenreID(getCurGenreID(3)); SETcurTypeID(4); }
+            if (comboBox_bookTypes.SelectedIndex == 0) { classObj.SETcurTable("fiction"); classObj.SETcurGenreID(getCurGenreID(0)); classObj.SETcurTypeID(1); }
+            else if (comboBox_bookTypes.SelectedIndex == 1) { classObj.SETcurTable("scientic"); classObj.SETcurGenreID(getCurGenreID(1)); classObj.SETcurTypeID(2); }
+            else if (comboBox_bookTypes.SelectedIndex == 2) { classObj.SETcurTable("documentary"); classObj.SETcurGenreID(getCurGenreID(2)); classObj.SETcurTypeID(3); }
+            else if (comboBox_bookTypes.SelectedIndex == 3) { classObj.SETcurTable("professional"); classObj.SETcurGenreID(getCurGenreID(3)); classObj.SETcurTypeID(4); }
 
             database.openConenection();
 
-            string query_str = $"SELECT COUNT(*) FROM {curTable}";
+            string query_str = $"SELECT COUNT(*) FROM {classObj.curTable}";
 
             MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
             var rowsAmount = (long)command.ExecuteScalar();
             string subquery_str;
             if (rowsAmount == 1) {
-                fillFirstField(false, false);
-                fillSecondField(false, true);
-                fillThirdField(false, true);
+                classObj.fillFirstField(false, false);
+                classObj.fillSecondField(false, true);
+                classObj.fillThirdField(false, true);
             }
             else if (rowsAmount == 2) {
-                fillFirstField(false, false);
-                fillSecondField(false, false);
-                fillThirdField(false, true);
+                classObj.fillFirstField(false, false);
+                classObj.fillSecondField(false, false);
+                classObj.fillThirdField(false, true);
             }
             else if (rowsAmount >= 3) {
-                fillFirstField(false, false);
-                fillSecondField(false, false);
-                fillThirdField(false, false);
+                classObj.fillFirstField(false, false);
+                classObj.fillSecondField(false, false);
+                classObj.fillThirdField(false, false);
             }
 
             database.closeConenection();
@@ -584,30 +583,62 @@ namespace library_interface_ver2
             Close();
         }
 
-        public string GETcurTable
-        {
+        public string CurTable {
             get
             {
                 return curTable;
             }
+            set
+            {
+                curTable = value;
+            }
         }
-        public int GETcurGenreID
+
+        public int CurGenreID
         {
             get
             {
                 return curGenreID;
             }
+            set
+            {
+                curGenreID = value;
+            }
         }
-        public int GETcurTypeID
+
+        public int CurTypeID
         {
             get
             {
                 return curTypeID;
             }
+            set
+            {
+                curTypeID = value;
+            }
         }
 
-        public void SETcurTable(string table) { curTable = table; }
-        public void SETcurGenreID(int id) { curGenreID = id; }
-        public void SETcurTypeID(int id) { curTypeID = id; }
+        public string GETcurTable()
+        {
+
+                return CurTable;
+
+        }
+        public int GETcurGenreID()
+        {
+
+                return CurGenreID;
+
+        }
+        public int GETcurTypeID()
+        {
+                return CurTypeID;
+
+        }
+
+
+        public void SETcurTable(string table) { CurTable = table; }
+        public void SETcurGenreID(int id) { CurGenreID = id; }
+        public void SETcurTypeID(int id) { CurTypeID = id; }
     }
 }
