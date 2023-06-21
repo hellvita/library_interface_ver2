@@ -73,6 +73,9 @@ namespace library_interface_ver2
             this.label_description = new System.Windows.Forms.Label();
             this.textBox_electronCopy = new System.Windows.Forms.TextBox();
             this.label_electronCopy = new System.Windows.Forms.Label();
+            this.comboBox_books_subjects = new System.Windows.Forms.ComboBox();
+            this.comboBox_comboBox_subject_areas = new System.Windows.Forms.ComboBox();
+            this.comboBox_comboBox_bookGenres = new System.Windows.Forms.ComboBox();
             this.panel_mainBcg.SuspendLayout();
             this.panel_header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -196,6 +199,9 @@ namespace library_interface_ver2
             // 
             // panel_editLabels
             // 
+            this.panel_editLabels.Controls.Add(this.comboBox_comboBox_bookGenres);
+            this.panel_editLabels.Controls.Add(this.comboBox_comboBox_subject_areas);
+            this.panel_editLabels.Controls.Add(this.comboBox_books_subjects);
             this.panel_editLabels.Controls.Add(this.label_electronCopy);
             this.panel_editLabels.Controls.Add(this.textBox_electronCopy);
             this.panel_editLabels.Controls.Add(this.label_description);
@@ -527,6 +533,33 @@ namespace library_interface_ver2
             this.label_electronCopy.TabIndex = 34;
             this.label_electronCopy.Text = "Електронна копія:";
             // 
+            // comboBox_books_subjects
+            // 
+            this.comboBox_books_subjects.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_books_subjects.FormattingEnabled = true;
+            this.comboBox_books_subjects.Location = new System.Drawing.Point(928, 43);
+            this.comboBox_books_subjects.Name = "comboBox_books_subjects";
+            this.comboBox_books_subjects.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_books_subjects.TabIndex = 35;
+            // 
+            // comboBox_comboBox_subject_areas
+            // 
+            this.comboBox_comboBox_subject_areas.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_comboBox_subject_areas.FormattingEnabled = true;
+            this.comboBox_comboBox_subject_areas.Location = new System.Drawing.Point(928, 44);
+            this.comboBox_comboBox_subject_areas.Name = "comboBox_comboBox_subject_areas";
+            this.comboBox_comboBox_subject_areas.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_comboBox_subject_areas.TabIndex = 36;
+            // 
+            // comboBox_comboBox_bookGenres
+            // 
+            this.comboBox_comboBox_bookGenres.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox_comboBox_bookGenres.FormattingEnabled = true;
+            this.comboBox_comboBox_bookGenres.Location = new System.Drawing.Point(928, 44);
+            this.comboBox_comboBox_bookGenres.Name = "comboBox_comboBox_bookGenres";
+            this.comboBox_comboBox_bookGenres.Size = new System.Drawing.Size(315, 39);
+            this.comboBox_comboBox_bookGenres.TabIndex = 37;
+            // 
             // EditBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -594,5 +627,8 @@ namespace library_interface_ver2
         private System.Windows.Forms.TextBox textBox_amount;
         private System.Windows.Forms.Label label_cover;
         private System.Windows.Forms.TextBox textBox_cover;
+        private System.Windows.Forms.ComboBox comboBox_comboBox_bookGenres;
+        private System.Windows.Forms.ComboBox comboBox_comboBox_subject_areas;
+        private System.Windows.Forms.ComboBox comboBox_books_subjects;
     }
 }
