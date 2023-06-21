@@ -62,21 +62,22 @@ namespace library_interface_ver2
 
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
-            }
 
-            if (table.Rows.Count == 1) {
-                // login success
-                if (lib_homepage_form == null || lib_homepage_form.IsDisposed)
+                if (table.Rows.Count == 1)
                 {
-                    lib_homepage_form = new LibraryHomePageForm();
-                    lib_homepage_form.Show();
+                    // login success
+                    if (lib_homepage_form == null || lib_homepage_form.IsDisposed)
+                    {
+                        lib_homepage_form = new LibraryHomePageForm();
+                        lib_homepage_form.Show();
+                    }
+                    else
+                    {
+                        lib_homepage_form.Focus();
+                    }
+                    Close();
                 }
-                else
-                {
-                    lib_homepage_form.Focus();
-                }
-                Close();
-            }
+            }           
             else {
                 // login fail
                 label_error_msg.Visible = Visible;
