@@ -28,6 +28,7 @@ namespace library_interface_ver2
 
         private void EditBookForm_Load(object sender, EventArgs e)
         {
+            button_save.Visible = false;
             setFielLimitation();
             label_position.Text = LibrarianHomePageForm.positionName;
             label_fullname.Text = LibrarianHomePageForm.fullName;
@@ -109,7 +110,18 @@ namespace library_interface_ver2
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            showAllFiction();
+            checkFields();
+            if (!typeFielsIsEmpty && nameIsEmpty && authorIsEmpty && yearIsEmpty && !genreIsEmpty && coverIsEmpty && elcopyIsEmpty && amountIsEmpty && dscrIsEmpty && laguageIsEmpty) 
+            { showBookByType(curBookGenre); }
+            else if (!typeFielsIsEmpty && nameIsEmpty && authorIsEmpty && yearIsEmpty && genreIsEmpty && coverIsEmpty && elcopyIsEmpty && amountIsEmpty && dscrIsEmpty && laguageIsEmpty) 
+            { showBookByType("0"); }
+        }
+
+        private void showBookByType(string genre) {
+            if (comboBox_bookTypes.SelectedIndex == 0) { showAllFiction(genre); }
+            else if (comboBox_bookTypes.SelectedIndex == 1) { showAllScientic(genre); }
+            else if (comboBox_bookTypes.SelectedIndex == 2) { showAllDocumentary(genre); }
+            else if (comboBox_bookTypes.SelectedIndex == 3) { showAllProfessional(genre); }
         }
 
         private void FillBookTypesList()
@@ -239,13 +251,21 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
-        private void showAllFiction() {
+        private void showAllFiction(string genre) {
             database.openConenection();
 
             DataTable table = new DataTable();
-
-            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT GENRE FROM genres WHERE GENRE_ID = fiction.GENRE_ID) AS GENERE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            MySqlDataAdapter adapter;
+            string query_str;
+            if (genre.Equals("0"))
+            {
+                query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT GENRE FROM genres WHERE GENRE_ID = fiction.GENRE_ID) AS GENERE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
+            else {
+                query_str = $"SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction WHERE GENRE_ID = (SELECT GENRE_ID FROM genres WHERE GENRE = '{genre}')";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
 
             adapter.Fill(table);
             dataGV_books.DataSource = table;
@@ -253,14 +273,23 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
-        private void showAllScientic()
+        private void showAllScientic(string genre)
         {
             database.openConenection();
 
             DataTable table = new DataTable();
-
-            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT SUB_AREA FROM subject_areas WHERE SUB_AREA_ID = scientic.SUB_AREA_ID) AS SUB_AREA, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = scientic.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM scientic";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            MySqlDataAdapter adapter;
+            string query_str;
+            if (genre.Equals("0"))
+            {
+                query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT SUB_AREA FROM subject_areas WHERE SUB_AREA_ID = scientic.SUB_AREA_ID) AS SUB_AREA, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = scientic.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM scientic";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
+            else
+            {
+                query_str = $"SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = scientic.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM scientic WHERE SUB_AREA_ID = (SELECT SUB_AREA_ID FROM subject_areas WHERE SUB_AREA = '{genre}')"; 
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
 
             adapter.Fill(table);
             dataGV_books.DataSource = table;
@@ -268,14 +297,23 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
-        private void showAllDocumentary()
+        private void showAllDocumentary(string genre)
         {
             database.openConenection();
 
             DataTable table = new DataTable();
-
-            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT BOOK_SUBJECT FROM books_subjects WHERE SUBJECT_ID = documentary.SUBJECT_ID) AS BOOK_SUBJECT, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = documentary.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM documentary";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            MySqlDataAdapter adapter;
+            string query_str;
+            if (genre.Equals("0"))
+            {
+                query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT BOOK_SUBJECT FROM books_subjects WHERE SUBJECT_ID = documentary.SUBJECT_ID) AS BOOK_SUBJECT, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = documentary.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM documentary";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
+            else
+            {
+                query_str = $"SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = documentary.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM documentary WHERE SUBJECT_ID = (SELECT SUBJECT_ID FROM books_subjects WHERE BOOK_SUBJECT = '{genre}')";  
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
 
             adapter.Fill(table);
             dataGV_books.DataSource = table;
@@ -283,14 +321,23 @@ namespace library_interface_ver2
             database.closeConenection();
         }
 
-        private void showAllProfessional()
+        private void showAllProfessional(string genre)
         {
             database.openConenection();
 
             DataTable table = new DataTable();
-
-            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT DISCIPLINE FROM disciplines WHERE DISCIPLINE_ID = professional.DISCIPLINE_ID) AS DISCIPLINE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = professional.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM professional";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            MySqlDataAdapter adapter;
+            string query_str;
+            if (genre.Equals("0"))
+            {
+                query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT DISCIPLINE FROM disciplines WHERE DISCIPLINE_ID = professional.DISCIPLINE_ID) AS DISCIPLINE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = professional.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM professional";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
+            else
+            {
+                query_str = $"SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = professional.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM professional WHERE DISCIPLINE_ID = (SELECT DISCIPLINE_ID FROM disciplines WHERE DISCIPLINE = '{genre}')";
+                adapter = new MySqlDataAdapter(query_str, database.GetConnection());
+            }
 
             adapter.Fill(table);
             dataGV_books.DataSource = table;
@@ -300,12 +347,14 @@ namespace library_interface_ver2
 
         private void button_edit_Click(object sender, EventArgs e)
         {
-
+            button_save.Visible = true;
+            button_edit.Visible = false;
         }
 
         private void button_save_Click(object sender, EventArgs e)
         {
-
+            button_save.Visible = false;
+            button_edit.Visible = true;
         }
 
         private void button_delete_Click(object sender, EventArgs e)
