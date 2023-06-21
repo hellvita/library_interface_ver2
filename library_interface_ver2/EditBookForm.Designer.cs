@@ -33,6 +33,7 @@ namespace library_interface_ver2
             this.panel_gridview = new System.Windows.Forms.Panel();
             this.dataGV_books = new System.Windows.Forms.DataGridView();
             this.panel_editLabels = new System.Windows.Forms.Panel();
+            this.button_clearFields = new System.Windows.Forms.Button();
             this.comboBox_bookGenres = new System.Windows.Forms.ComboBox();
             this.comboBox_subject_areas = new System.Windows.Forms.ComboBox();
             this.comboBox_books_subjects = new System.Windows.Forms.ComboBox();
@@ -67,7 +68,6 @@ namespace library_interface_ver2
             this.button_back = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button_clearFields = new System.Windows.Forms.Button();
             this.panel_mainBcg.SuspendLayout();
             this.panel_gridview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_books)).BeginInit();
@@ -103,6 +103,7 @@ namespace library_interface_ver2
             this.dataGV_books.ReadOnly = true;
             this.dataGV_books.RowHeadersWidth = 51;
             this.dataGV_books.RowTemplate.Height = 29;
+            this.dataGV_books.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGV_books.Size = new System.Drawing.Size(1741, 627);
             this.dataGV_books.TabIndex = 0;
             // 
@@ -140,6 +141,19 @@ namespace library_interface_ver2
             this.panel_editLabels.Name = "panel_editLabels";
             this.panel_editLabels.Size = new System.Drawing.Size(1760, 250);
             this.panel_editLabels.TabIndex = 14;
+            // 
+            // button_clearFields
+            // 
+            this.button_clearFields.AutoSize = true;
+            this.button_clearFields.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_clearFields.Location = new System.Drawing.Point(1591, 36);
+            this.button_clearFields.Name = "button_clearFields";
+            this.button_clearFields.Size = new System.Drawing.Size(59, 53);
+            this.button_clearFields.TabIndex = 38;
+            this.button_clearFields.Text = "⟲";
+            this.button_clearFields.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button_clearFields.UseVisualStyleBackColor = true;
+            this.button_clearFields.Click += new System.EventHandler(this.button_clearFields_Click);
             // 
             // comboBox_bookGenres
             // 
@@ -471,19 +485,6 @@ namespace library_interface_ver2
             this.label1.Size = new System.Drawing.Size(222, 88);
             this.label1.TabIndex = 1;
             this.label1.Text = "Hisentia";
-            // 
-            // button_clearFields
-            // 
-            this.button_clearFields.AutoSize = true;
-            this.button_clearFields.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_clearFields.Location = new System.Drawing.Point(1591, 36);
-            this.button_clearFields.Name = "button_clearFields";
-            this.button_clearFields.Size = new System.Drawing.Size(59, 53);
-            this.button_clearFields.TabIndex = 38;
-            this.button_clearFields.Text = "⟲";
-            this.button_clearFields.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_clearFields.UseVisualStyleBackColor = true;
-            this.button_clearFields.Click += new System.EventHandler(this.button_clearFields_Click);
             // 
             // EditBookForm
             // 

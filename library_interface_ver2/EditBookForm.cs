@@ -108,6 +108,7 @@ namespace library_interface_ver2
 
         private void button_search_Click(object sender, EventArgs e)
         {
+            
         }
 
         private void FillBookTypesList()
@@ -242,7 +243,7 @@ namespace library_interface_ver2
 
             DataTable table = new DataTable();
 
-            string query_str = "SELECT BOOK_NAME, AUTHOR, (SELECT GENRE FROM genres WHERE GENRE_ID = fiction.GENRE_ID) AS GENERE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction";
+            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT GENRE FROM genres WHERE GENRE_ID = fiction.GENRE_ID) AS GENERE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = fiction.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM fiction";
             MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
 
             adapter.Fill(table);
@@ -257,7 +258,7 @@ namespace library_interface_ver2
 
             DataTable table = new DataTable();
 
-            string query_str = "SELECT BOOK_NAME, AUTHOR, (SELECT SUB_AREA FROM subject_areas WHERE SUB_AREA_ID = scientic.SUB_AREA_ID) AS SUB_AREA, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = scientic.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM scientic";
+            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT SUB_AREA FROM subject_areas WHERE SUB_AREA_ID = scientic.SUB_AREA_ID) AS SUB_AREA, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = scientic.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM scientic";
             MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
 
             adapter.Fill(table);
@@ -272,7 +273,7 @@ namespace library_interface_ver2
 
             DataTable table = new DataTable();
 
-            string query_str = "SELECT BOOK_NAME, AUTHOR, (SELECT BOOK_SUBJECT FROM books_subjects WHERE SUBJECT_ID = documentary.SUBJECT_ID) AS BOOK_SUBJECT, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = documentary.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM documentary";
+            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT BOOK_SUBJECT FROM books_subjects WHERE SUBJECT_ID = documentary.SUBJECT_ID) AS BOOK_SUBJECT, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = documentary.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM documentary";
             MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
 
             adapter.Fill(table);
@@ -287,7 +288,7 @@ namespace library_interface_ver2
 
             DataTable table = new DataTable();
 
-            string query_str = "SELECT BOOK_NAME, AUTHOR, (SELECT DISCIPLINE FROM disciplines WHERE DISCIPLINE_ID = professional.DISCIPLINE_ID) AS DISCIPLINE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = professional.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM professional";
+            string query_str = "SELECT BOOK_TYPE_ID, BOOK_ID, BOOK_NAME, AUTHOR, (SELECT DISCIPLINE FROM disciplines WHERE DISCIPLINE_ID = professional.DISCIPLINE_ID) AS DISCIPLINE, PUBLICATION_YEAR, (SELECT BOOK_LANGUAGE FROM writing_languages WHERE LANGUAGE_ID = professional.LANGUAGE_ID) AS LANGUAGE, COVER, BOOK_DESCRIPTION, AMOUNT, ELECTRONIC_COPY FROM professional";
             MySqlDataAdapter adapter = new MySqlDataAdapter(query_str, database.GetConnection());
 
             adapter.Fill(table);
@@ -308,8 +309,11 @@ namespace library_interface_ver2
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-
+            
         }
+
+
+
 
         private void button_clearFields_Click(object sender, EventArgs e)
         {
