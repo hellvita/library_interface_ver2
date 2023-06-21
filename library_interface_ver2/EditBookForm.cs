@@ -17,7 +17,7 @@ namespace library_interface_ver2
         private LibrarianHomePageForm homepage_form;
         private string curBookType, curBookName, curBookAuthor, curBookYear, curBookGenre;
         private string curBookCover, curBookElCopy, curBookAmount, curBookDescr, curBookLanguage;
-        private bool typeFielsIsEmpty, nameIsEmpty, AythorIsEmpty, yearIsEmpty, genreIsEmpty;
+        private bool typeFielsIsEmpty, nameIsEmpty, authorIsEmpty, yearIsEmpty, genreIsEmpty;
         private bool coverIsEmpty, elcopyIsEmpty, amountIsEmpty, dscrIsEmpty, laguageIsEmpty;
         public EditBookForm()
         {
@@ -332,13 +332,87 @@ namespace library_interface_ver2
             textBox_description.Text = "";
         }
 
-        private void checkFiels() { 
-
+        private void checkFields() {
+            checkbookTypes();
+            checkbookName();
+            checkbookAuthor();
+            checkbookYear();
+            checkbookGenre();
+            checkbookCover();
+            checkbookElCopy();
+            checkbookAmount();
+            checkbookDescr();
+            checkbookLaguage();
         }
 
         private void checkbookTypes()
         {
+            curBookType = comboBox_bookTypes.Text;
+            if (curBookType == "") { typeFielsIsEmpty = true; }
+            else typeFielsIsEmpty = false;
+        }
 
+        private void checkbookName()
+        {
+            curBookName = textBox_bookName.Text;
+            if (curBookName == "") { nameIsEmpty = true; }
+            else nameIsEmpty = false;
+        }
+
+        private void checkbookAuthor()
+        {
+            curBookAuthor = textBox_author.Text;
+            if (curBookAuthor == "") { authorIsEmpty = true; }
+            else authorIsEmpty = false;
+        }
+
+        private void checkbookYear()
+        {
+            curBookYear = textBox_year.Text;
+            if (curBookYear == "") { yearIsEmpty = true; }
+            else yearIsEmpty = false;
+        }
+
+        private void checkbookGenre()
+        {
+            curBookGenre = comboBox_bookGenres.Text;
+            if (curBookGenre == "") { genreIsEmpty = true; }
+            else genreIsEmpty = false;
+        }
+
+        private void checkbookCover()
+        {
+            curBookCover = textBox_cover.Text;
+            if (curBookCover == "") { coverIsEmpty = true; }
+            else coverIsEmpty = false;
+        }
+
+        private void checkbookElCopy()
+        {
+            curBookElCopy = textBox_electronCopy.Text;
+            if (curBookElCopy == "") { elcopyIsEmpty = true; }
+            else elcopyIsEmpty = false;
+        }
+
+        private void checkbookAmount()
+        {
+            curBookAmount = textBox_amount.Text;
+            if (curBookAmount == "") { amountIsEmpty = true; }
+            else amountIsEmpty = false;
+        }
+
+        private void checkbookDescr()
+        {
+            curBookDescr = textBox_description.Text;
+            if (curBookDescr == "") { dscrIsEmpty = true; }
+            else dscrIsEmpty = false;
+        }
+
+        private void checkbookLaguage()
+        {
+            curBookLanguage = comboBox_language.Text;
+            if (curBookLanguage == "") { laguageIsEmpty = true; }
+            else laguageIsEmpty = false;
         }
     }
 }
