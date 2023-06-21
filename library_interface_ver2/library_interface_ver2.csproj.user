@@ -4,6 +4,9 @@
     <Compile Update="AccDeleteConfirmForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ApplyBookChangesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="BookFullDescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
