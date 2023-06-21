@@ -333,7 +333,13 @@ namespace library_interface_ver2
             }
             else if (byKeyWords)
             {
+                execGetBookQuery(field1_table, 2);
 
+                execCoverQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execBookNameQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execAuthorQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execYearQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
+                execDescrQuery(field2_table, field2_book_type_id, field2_book_id, 2, form);
             }
         }
         private void fillThirdField(bool homepage, bool thisIsEmpty, bool byKeyWords, LibraryHomePageForm form) {
@@ -354,6 +360,16 @@ namespace library_interface_ver2
             else if (!thisIsEmpty && !byKeyWords) { 
                 field3_book_id = 3; field3_book_type_id = GETcurTypeID();
                 field3_table = GETcurTable(); field3_book_genre_id = GETcurGenreID();
+
+                execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execAuthorQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execYearQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+                execDescrQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
+            }
+            else if (byKeyWords)
+            {
+                execGetBookQuery(field1_table, 3);
 
                 execCoverQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
                 execBookNameQuery(field3_table, field3_book_type_id, field3_book_id, 3, form);
@@ -542,8 +558,16 @@ namespace library_interface_ver2
                 else if (i==2) docN = (long)command.ExecuteScalar();
                 else if (i==3) profN = (long)command.ExecuteScalar();
             }
-            if (ficN >= 1 && scN >= 1 && docN >= 1 && profN >= 1) {
-
+            if (ficN >= 1 && scN >= 1 && docN >= 1) {
+                field1_book_type_id = 1;
+                field1_table = "fiction"; field1_genre_type = "GENRE_ID";
+                field2_book_type_id = 2;
+                field2_table = "scientic"; field2_genre_type = "SUB_AREA_ID";
+                field3_book_type_id = 3;
+                field3_table = "documentary"; field3_genre_type = "SUBJECT_ID";
+                fillFirstField(false, false, searchByKeyWords, this);
+                fillSecondField(false, false, searchByKeyWords, this);
+                fillThirdField(false, false, searchByKeyWords, this);
             }
             else if (ficN == 1 || scN == 1 || docN == 1 || profN == 1) {
                 if (ficN == 1)
