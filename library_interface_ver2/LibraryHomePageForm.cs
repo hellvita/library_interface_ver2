@@ -24,6 +24,9 @@ namespace library_interface_ver2
         int field1_book_id; int field1_book_type_id; string field1_table; int field1_book_genre_id;
         int field2_book_id; int field2_book_type_id; string field2_table; int field2_book_genre_id;
         int field3_book_id; int field3_book_type_id; string field3_table; int field3_book_genre_id;
+        private string curTable;
+        private int curGenreID;
+
         public LibraryHomePageForm()
         {
             InitializeComponent();
@@ -33,8 +36,7 @@ namespace library_interface_ver2
 
         private void LibraryHomePageForm_Load(object sender, EventArgs e)
         {
-            panel_mainBooksOverview.Visible = true;
-            panel_noresults.Visible = false;
+            setStartHomePageView();
             label_userID.Text = "Користувач №" + UserLoginForm.ulog;
             comboBox_pages.SelectedIndex = 0;
             FillBookTypesList();
@@ -191,15 +193,17 @@ namespace library_interface_ver2
         private void fillBooksPreviewOf(int field_amount) {
             
             switch (field_amount) {
-                case 1: { fillFirstField(true); } break;
-                case 2: { fillFirstField(true); fillSecondField(true); } break;
-                case 3: { fillFirstField(true); fillSecondField(true); fillThirdField(true); } break;
+                case 1: { fillFirstField(true, false); } break;
+                case 2: { fillFirstField(true, false); fillSecondField(true, false); } break;
+                case 3: { fillFirstField(true, false); fillSecondField(true, false); fillThirdField(true, false); } break;
             }
           
         }
 
-        private void fillFirstField(bool homepage) {
-            database.openConenection();
+        
+
+        private void fillFirstField(bool homepage, bool thisIsEmpty) {
+            database.openConenection();            
             if (homepage) {
                 field1_book_id = 1; field1_book_type_id = 1;
                 field1_table = "fiction";
@@ -238,9 +242,10 @@ namespace library_interface_ver2
                 subcommand = new MySqlCommand(query_getGenreID11, database.GetConnection());
                 field1_book_genre_id = (int)subcommand.ExecuteScalar();
             }
+            else if (thisIsEmpty) { panel_shortBookDescr1.Visible = false; }
             database.closeConenection();
         }
-        private void fillSecondField(bool homepage) {
+        private void fillSecondField(bool homepage, bool thisIsEmpty) {
             database.openConenection();
             if (homepage)
             {
@@ -281,9 +286,10 @@ namespace library_interface_ver2
                 subcommand = new MySqlCommand(query_getGenreID21, database.GetConnection());
                 field2_book_genre_id = (int)subcommand.ExecuteScalar();
             }
+            else if (thisIsEmpty) { panel_shortBookDescr2.Visible = false; }
             database.closeConenection();
         }
-        private void fillThirdField(bool homepage) {
+        private void fillThirdField(bool homepage, bool thisIsEmpty) {
             database.openConenection();
             if (homepage)
             {
@@ -324,6 +330,7 @@ namespace library_interface_ver2
                 subcommand = new MySqlCommand(query_getGenreID31, database.GetConnection());
                 field3_book_genre_id = (int)subcommand.ExecuteScalar();
             }
+            else if (thisIsEmpty) { panel_shortBookDescr3.Visible = false; }
             database.closeConenection();
         }
 
@@ -378,10 +385,30 @@ namespace library_interface_ver2
             UpdateLists(curType);
         }
 
+        private void setStartHomePageView() {
+            textBox_search.Text = "";
+            UpdateLists(0);
+
+            comboBox_bookGenres.SelectedIndex = 0;
+            comboBox_subject_areas.SelectedIndex = 0;
+            comboBox_books_subjects.SelectedIndex = 0;
+            comboBox_disciplines.SelectedIndex = 0;
+
+            comboBox_bookTypes.SelectedIndex = 0;
+            comboBox_language.SelectedIndex = 1;
+
+            panel_mainBooksOverview.Visible = true;
+            panel_shortBookDescr1.Visible = true;
+            panel_shortBookDescr2.Visible = true;
+            panel_shortBookDescr3.Visible = true;
+            panel_noresults.Visible = false;
+
+            fillBooksPreviewOf(3);
+        }
+
         private void button_home_Click(object sender, EventArgs e)
         {
-            panel_mainBooksOverview.Visible = true;
-            panel_noresults.Visible = false;
+            setStartHomePageView();
         }
 
         private void linkLabel_bookName1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -439,8 +466,96 @@ namespace library_interface_ver2
 
         private void button_search_Click(object sender, EventArgs e)
         {
+            setSearchingValues();
+            bookSearching();            
+            showNoRes();
+        }
+
+        private void setSearchingValues() {
+            string genreText = "";
+            if (comboBox_disciplines.Visible) genreText = comboBox_disciplines.Text;
+            else if (comboBox_books_subjects.Visible) genreText = comboBox_books_subjects.Text;
+            else if (comboBox_subject_areas.Visible) genreText = comboBox_subject_areas.Text;
+            else if (comboBox_bookGenres.Visible) genreText = comboBox_bookGenres.Text;
+            textBox_search.Text = $"{comboBox_bookTypes.Text}, {genreText}, {comboBox_language.Text}";
+        }
+
+        private void showNoRes() {
+
             panel_mainBooksOverview.Visible = false;
             panel_noresults.Visible = true;
+        }
+
+
+
+        private void bookSearching() {
+
+            if (comboBox_bookTypes.SelectedIndex == 0) { SETcurTable("fiction"); SETcurGenreID(getCurGenreID(0)); }
+            else if (comboBox_bookTypes.SelectedIndex == 1) { SETcurTable("scientic"); SETcurGenreID(getCurGenreID(1)); }
+            else if (comboBox_bookTypes.SelectedIndex == 2) { SETcurTable("documentary"); SETcurGenreID(getCurGenreID(2)); }
+            else if (comboBox_bookTypes.SelectedIndex == 3) { SETcurTable("professional"); SETcurGenreID(getCurGenreID(3)); }
+
+            database.openConenection();
+
+            string query_str = $"SELECT COUNT(*) FROM {curTable}";
+
+            MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
+            var rowsAmount = (long)command.ExecuteScalar();
+            string subquery_str;
+            if (rowsAmount == 1) {
+                fillFirstField(false, false);
+                fillSecondField(false, true);
+                fillThirdField(false, true);
+            }
+            else if (rowsAmount == 2) {
+                fillFirstField(false, false);
+                fillSecondField(false, false);
+                fillThirdField(false, true);
+            }
+            else if (rowsAmount >= 3) {
+                fillFirstField(false, false);
+                fillSecondField(false, false);
+                fillThirdField(false, false);
+            }
+
+            database.closeConenection();
+        }
+
+        private int getCurGenreID(int type) {
+            database.openConenection();
+            int genreID = 1;
+            string curGenreName;
+            string query_str;
+            MySqlCommand command;
+            switch (type)
+            {
+                case 0: {
+                        curGenreName = comboBox_bookGenres.Text;
+                        query_str = $"SELECT GENRE_ID FROM genres WHERE GENRE = '{curGenreName}'";
+                        command = new MySqlCommand(query_str, database.GetConnection());
+                        genreID = (int)command.ExecuteScalar();
+                    } break;
+                case 1: {
+                        curGenreName = comboBox_books_subjects.Text;
+                        query_str = $"SELECT SUB_AREA_ID FROM subject_areas WHERE SUB_AREA = '{curGenreName}'";
+                        command = new MySqlCommand(query_str, database.GetConnection());
+                        genreID = (int)command.ExecuteScalar();
+                    } break;
+                case 2: {
+                        curGenreName = comboBox_subject_areas.Text;
+                        query_str = $"SELECT SUBJECT_ID FROM books_subjects WHERE BOOK_SUBJECT = '{curGenreName}'";
+                        command = new MySqlCommand(query_str, database.GetConnection());
+                        genreID = (int)command.ExecuteScalar();
+                    } break;
+                case 3: {
+                        curGenreName = comboBox_bookGenres.Text;
+                        query_str = $"SELECT DISCIPLINE_ID FROM disciplines WHERE DISCIPLINE = '{curGenreName}'";
+                        command = new MySqlCommand(query_str, database.GetConnection());
+                        genreID = (int)command.ExecuteScalar();
+                    } break;
+            }
+            database.closeConenection();
+            return genreID;
         }
 
         private void button_userAcc_Click(object sender, EventArgs e)
@@ -456,5 +571,23 @@ namespace library_interface_ver2
             }
             Close();
         }
+
+        public string GETcurRable
+        {
+            get
+            {
+                return curTable;
+            }
+        }
+        public int GETcurGenreID
+        {
+            get
+            {
+                return curGenreID;
+            }
+        }
+
+        public void SETcurTable(string table) { curTable = table; }
+        public void SETcurGenreID(int id) { curGenreID = id; }
     }
 }
