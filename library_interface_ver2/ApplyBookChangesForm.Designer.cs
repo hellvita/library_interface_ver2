@@ -39,7 +39,7 @@ namespace library_interface_ver2
             this.panel_deletingTip = new System.Windows.Forms.Panel();
             this.label_deletingTip = new System.Windows.Forms.Label();
             this.button_cancle = new System.Windows.Forms.Button();
-            this.button_delete = new System.Windows.Forms.Button();
+            this.button_apply = new System.Windows.Forms.Button();
             this.panel_mainbcg.SuspendLayout();
             this.panel_deletingLabels.SuspendLayout();
             this.panel_deletingTip.SuspendLayout();
@@ -51,7 +51,7 @@ namespace library_interface_ver2
             this.panel_mainbcg.Controls.Add(this.panel_deletingLabels);
             this.panel_mainbcg.Controls.Add(this.panel_deletingTip);
             this.panel_mainbcg.Controls.Add(this.button_cancle);
-            this.panel_mainbcg.Controls.Add(this.button_delete);
+            this.panel_mainbcg.Controls.Add(this.button_apply);
             this.panel_mainbcg.Location = new System.Drawing.Point(12, 12);
             this.panel_mainbcg.Name = "panel_mainbcg";
             this.panel_mainbcg.Size = new System.Drawing.Size(726, 493);
@@ -138,17 +138,17 @@ namespace library_interface_ver2
             this.button_cancle.UseVisualStyleBackColor = true;
             this.button_cancle.Click += new System.EventHandler(this.button_cancle_Click);
             // 
-            // button_delete
+            // button_apply
             // 
-            this.button_delete.AutoSize = true;
-            this.button_delete.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_delete.Location = new System.Drawing.Point(386, 426);
-            this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(155, 51);
-            this.button_delete.TabIndex = 0;
-            this.button_delete.Text = "Змінити";
-            this.button_delete.UseVisualStyleBackColor = true;
-            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+            this.button_apply.AutoSize = true;
+            this.button_apply.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button_apply.Location = new System.Drawing.Point(386, 426);
+            this.button_apply.Name = "button_apply";
+            this.button_apply.Size = new System.Drawing.Size(155, 51);
+            this.button_apply.TabIndex = 0;
+            this.button_apply.Text = "Змінити";
+            this.button_apply.UseVisualStyleBackColor = true;
+            this.button_apply.Click += new System.EventHandler(this.button_apply_Click);
             // 
             // ApplyBookChangesForm
             // 
@@ -180,6 +180,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.Panel panel_deletingTip;
         private System.Windows.Forms.Label label_deletingTip;
         private System.Windows.Forms.Button button_cancle;
-        private System.Windows.Forms.Button button_delete;
+        private System.Windows.Forms.Button button_apply;
     }
 }

@@ -16,10 +16,12 @@ namespace library_interface_ver2
         DataBase database = new DataBase();
         private LibrarianHomePageForm homepage_form;
         private DeleteBookForm deleteBook_form;
-        private string curBookType, curBookName, curBookAuthor, curBookYear, curBookGenre;
-        private string curBookCover, curBookElCopy, curBookAmount, curBookDescr, curBookLanguage;
-        private bool typeFielsIsEmpty, nameIsEmpty, authorIsEmpty, yearIsEmpty, genreIsEmpty;
-        private bool coverIsEmpty, elcopyIsEmpty, amountIsEmpty, dscrIsEmpty, laguageIsEmpty;
+        private ApplyBookChangesForm editBook_form;
+        public static int typeNum;
+        public static string curBookType, curBookName, curBookAuthor, curBookYear, curBookGenre;
+        public static string curBookCover, curBookElCopy, curBookAmount, curBookDescr, curBookLanguage;
+        public static bool typeFielsIsEmpty, nameIsEmpty, authorIsEmpty, yearIsEmpty, genreIsEmpty;
+        public static bool coverIsEmpty, elcopyIsEmpty, amountIsEmpty, dscrIsEmpty, laguageIsEmpty;
         public EditBookForm()
         {
             InitializeComponent();
@@ -28,7 +30,6 @@ namespace library_interface_ver2
 
         private void EditBookForm_Load(object sender, EventArgs e)
         {
-            button_save.Visible = false;
             setFielLimitation();
             label_position.Text = LibrarianHomePageForm.positionName;
             label_fullname.Text = LibrarianHomePageForm.fullName;
@@ -347,15 +348,18 @@ namespace library_interface_ver2
 
         private void button_edit_Click(object sender, EventArgs e)
         {
-            button_save.Visible = true;
-            button_edit.Visible = false;
+            checkFields();
+            if (editBook_form == null || editBook_form.IsDisposed)
+            {
+                editBook_form = new ApplyBookChangesForm();
+                editBook_form.Show();
+            }
+            else
+            {
+                editBook_form.Focus();
+            }
         }
 
-        private void button_save_Click(object sender, EventArgs e)
-        {
-            button_save.Visible = false;
-            button_edit.Visible = true;
-        }
 
         private void button_delete_Click(object sender, EventArgs e)
         {
@@ -409,6 +413,7 @@ namespace library_interface_ver2
 
         private void checkbookTypes()
         {
+            typeNum = comboBox_bookTypes.SelectedIndex + 1;
             curBookType = comboBox_bookTypes.Text;
             if (curBookType == "") { typeFielsIsEmpty = true; }
             else typeFielsIsEmpty = false;

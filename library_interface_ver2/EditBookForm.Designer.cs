@@ -46,7 +46,6 @@ namespace library_interface_ver2
             this.label_cover = new System.Windows.Forms.Label();
             this.textBox_cover = new System.Windows.Forms.TextBox();
             this.button_delete = new System.Windows.Forms.Button();
-            this.button_save = new System.Windows.Forms.Button();
             this.button_edit = new System.Windows.Forms.Button();
             this.button_search = new System.Windows.Forms.Button();
             this.label_language = new System.Windows.Forms.Label();
@@ -122,7 +121,6 @@ namespace library_interface_ver2
             this.panel_editLabels.Controls.Add(this.label_cover);
             this.panel_editLabels.Controls.Add(this.textBox_cover);
             this.panel_editLabels.Controls.Add(this.button_delete);
-            this.panel_editLabels.Controls.Add(this.button_save);
             this.panel_editLabels.Controls.Add(this.button_edit);
             this.panel_editLabels.Controls.Add(this.button_search);
             this.panel_editLabels.Controls.Add(this.label_language);
@@ -264,17 +262,6 @@ namespace library_interface_ver2
             this.button_delete.Text = "🗑️";
             this.button_delete.UseVisualStyleBackColor = true;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
-            // 
-            // button_save
-            // 
-            this.button_save.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_save.Location = new System.Drawing.Point(1686, 36);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(57, 52);
-            this.button_save.TabIndex = 25;
-            this.button_save.Text = "✔";
-            this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // button_edit
             // 
@@ -532,7 +519,6 @@ namespace library_interface_ver2
         private System.Windows.Forms.Label label_language;
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.Button button_edit;
-        private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_delete;
         private System.Windows.Forms.Panel panel_gridview;
         private System.Windows.Forms.Label label_electronCopy;
