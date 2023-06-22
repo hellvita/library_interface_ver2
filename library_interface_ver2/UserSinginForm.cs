@@ -53,24 +53,19 @@ namespace library_interface_ver2
             if (DataIsOK(userFullName, userPhone, userEmail, textBox_user_pwd.Text)) {
                 var userID = generateUserID();
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                DataTable table = new DataTable();
-
-                string query_str = $"INSERT INTO users (USER_ID, USER_PASSWORD, FULL_NAME, PHONE, EMAIL) VALUES ('{userID}', '{userPwd}', '{userFullName}', '{userPhone}', '{userEmail}')";
+                string query_str = $"INSERT INTO users (USER_ID, USER_PASSWORD, FULL_NAME, PHONE, EMAIL) VALUES " +
+                    $"('{userID}', '{userPwd}', '{userFullName}', '{userPhone}', '{userEmail}')";
                 MySqlCommand command = new MySqlCommand(query_str, database.GetConnection());
                 database.openConenection();
 
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Ваш логін: " + userID, "Успіх!");
-                    CloseThisForm();
-                    database.closeConenection();
+                    CloseThisForm();                    
                 }
                 else { MessageBox.Show("Помилка обробки даних!"); }
-                                
-
+                database.closeConenection();
             }
-
         }
 
         private bool DataIsOK(string name, string phone, string email, string pwd) {

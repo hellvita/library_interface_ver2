@@ -90,7 +90,7 @@ namespace library_interface_ver2
             this.ClientSize = new System.Drawing.Size(800, 356);
             this.Controls.Add(this.panel1);
             this.Name = "UserLogSinginForm";
-            this.Text = "UserLogSinginForm";
+            this.Text = "Авторизуватись або зареєструватись";
             this.Load += new System.EventHandler(this.UserLogSinginForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

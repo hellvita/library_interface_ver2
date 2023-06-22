@@ -238,7 +238,7 @@ namespace library_interface_ver2
             this.ClientSize = new System.Drawing.Size(1402, 677);
             this.Controls.Add(this.panel1);
             this.Name = "UserSinginForm";
-            this.Text = "UserSinginForm";
+            this.Text = "Створення облікового запису";
             this.Load += new System.EventHandler(this.UserSinginForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
